@@ -9,7 +9,8 @@
 
                 <div class="card-body">
                     @if (session('resent'))
-                        <div class="alert alert-success" role="alert">
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             {{ __('A fresh verification link has been sent to your email address.') }}
                         </div>
                     @endif
