@@ -34,7 +34,11 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
+                            @if(Auth::user()->role == 'admin')
                             <a class="nav-link" href="{{ route('producto.index')}}">{{__('Producto')}}</a>
+                            @else()
+                            <a class="nav-link" href="{{ route('producto.catalogo')}}">{{__('Catalogo')}}</a>
+                            @endif
                         </li>
                     </ul>
 
