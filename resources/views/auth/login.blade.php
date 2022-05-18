@@ -4,14 +4,14 @@
 <div class="container" style="height: auto;">
   <div class="row align-items-center">
     <div class="col-md-9 ml-auto mr-auto mb-3 text-center">
-      <h3>{{ __('Bienvendi@ al Login de Boutique Anita') }} </h3>
+      <h3>{{ __('¡¡Bienvendi@ al Login de Boutique Anita!!') }} </h3>
     </div>
     <div class="col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto">
       <form class="form" method="POST" action="{{ route('login') }}">
         @csrf
 
         <div class="card card-login card-hidden mb-3">
-          <div class="card-header card-header-primary text-center" style="background: linear-gradient(60deg, #bcb747, #aa243d)">
+          <div class="card-header card-header-primary text-center" style="background: linear-gradient(60deg, #ffde61, #f7ab9f,#ffde61)">
             <h4 class="card-title"><strong>{{ __('Login') }}</strong></h4>
             <div class="social-line">
               
@@ -66,13 +66,13 @@
         </div>
       </form>
       <div class="row">
-        <div class="col-6">
+        <!-- <div class="col-6">
             @if (Route::has('password.request'))
                 <a href="{{ route('password.request') }}" class="text-light">
                     <small>{{ __('¿Olvido su contraseña?') }}</small>
                 </a>
             @endif
-        </div>
+        </div> -->
         <div class="col-6 text-right">
             <a href="{{ route('register') }}" class="text-light">
                 <small>{{ __('Crear un nuevo Usuario') }}</small>
