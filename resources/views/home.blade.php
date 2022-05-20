@@ -5,7 +5,8 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Productos en Stock') }}</div>
+                <!-- <div class="card-header"> -->
+                <div class="card-header card-header-primary text-center" style="background: linear-gradient(60deg, #ffde61, #f7ab9f,#ffde61)">{{ __('Productos en Stock') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -27,3 +28,19 @@
     </div>
 </div>
 @endsection
+
+
+
+<!-- @section('content')
+<div class="container" style="height: auto;">
+  <div class="row align-items-center">
+    <div class="col-md-9 ml-auto mr-auto mb-3 text-center">
+      <h3>{{ __('¡¡Bienvendi@ al Login de Boutique Anita!!') }} </h3>
+    </div>
+    
+      </div>
+    </div>
+  </div>
+</div>
+@endsection -->
+

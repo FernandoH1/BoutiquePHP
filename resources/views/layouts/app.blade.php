@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,12 +20,14 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
+
+<body background="../public/img/fondo.jpg" style="background-size:cover" >
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="background: linear-gradient(60deg, #ffde61, #f7ab9f, #ffde61,#f7ab9f, #ffde61)">
             <div class="container">
+            <img src="{{ asset('/img/boutique.png') }}" alt="HSS" height="80px" width="80px">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                Boutique
+                    <h2><b>Boutique</b></h2>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -35,9 +38,9 @@
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
                             @if(Auth::user()->role == 'admin')
-                            <a class="nav-link" href="{{ route('producto.index')}}">{{__('Producto')}}</a>
+                            <h5><a class="nav-link" href="{{ route('producto.index')}}">{{__('Producto')}}</a></h5>
                             @else()
-                            <a class="nav-link" href="{{ route('producto.catalogo')}}">{{__('Catalogo')}}</a>
+                            <h5><a class="nav-link" href="{{ route('producto.catalogo')}}">{{__('Catalogo')}}</a></h5>
                             @endif
                         </li>
                     </ul>
@@ -46,35 +49,39 @@
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
                         @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
+                        @if (Route::has('login'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        </li>
+                        @endif
 
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
+                        @if (Route::has('register'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        </li>
+                        @endif
                         @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                @if(Auth::user()->role == 'admin')
+                                <img src="{{ asset('/img/faces/Admin.png') }}" alt="HSS" height="30px" width="30px">
+                                @else()
+                                <img src="{{ asset('/img/faces/user.png') }}" alt="HSS" height="30px" width="30px">
+                                @endif
+                                <b>{{ Auth::user()->name }}</b>
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
                         @endguest
                     </ul>
                 </div>
@@ -86,4 +93,6 @@
         </main>
     </div>
 </body>
+
+
 </html>
