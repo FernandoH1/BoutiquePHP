@@ -21,14 +21,28 @@ Route::get('/', function () {
 
 Route::get('/catalogo', function () {
     return view('producto.catalogo');
-})->middleware('auth')->name('producto.catalogo');
+})->middleware('auth');
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::resource('producto', ProductoController::class)->middleware('auth.admin');
+
+Route::get('/catalogo', [ProductoController::class, 'catalogoView'])->middleware('auth')->name('producto.catalogo');
+Route::get('/xs', [ProductoController::class, 'productosViewXS'])->middleware('auth')->name('producto.xs');
+Route::get('/s', [ProductoController::class, 'productosViewS'])->middleware('auth')->name('producto.s');  
+Route::get('/m', [ProductoController::class, 'productosViewM'])->middleware('auth')->name('producto.m');    
+Route::get('/l', [ProductoController::class, 'productosViewL'])->middleware('auth')->name('producto.l');
+Route::get('/xl', [ProductoController::class, 'productosViewXL'])->middleware('auth')->name('producto.xl');
+Route::get('/xxl', [ProductoController::class, 'productosViewXXL'])->middleware('auth')->name('producto.xxl');
+Route::get('/xxxl', [ProductoController::class, 'productosViewXXXL'])->middleware('auth')->name('producto.xxxl');   
+
+
 //Route::get('catalogo', [ProductoController::class, 'catalogo'])->middleware('auth')->name('producto.catalogo');
+
+
+
 
 //Auth::routes();
 Route::get('/home', [ProductoController::class, 'index'])->middleware('auth.admin')->name('home');

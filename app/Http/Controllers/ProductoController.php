@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Producto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Facades\Storage;
 
@@ -23,6 +24,92 @@ class ProductoController extends Controller
         $productos = Producto::paginate();
 
         return view('producto.index', compact('productos'))
+            ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
+    }
+
+
+    public function catalogoView(Request $request)
+    {
+        $texto = trim($request->get('buscar'));
+        //Select * From productos
+        $productos = DB::table('productos')->select('*')
+            ->where('tipo', 'LIKE', '%' . $texto . '%')
+            ->orWhere('marca', 'LIKE', '%' . $texto . '%')
+            ->orderBy('tipo', 'asc')
+            ->paginate(10);
+
+        return view('producto.catalogo', compact('productos', 'texto'))
+            ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
+    }
+
+    public function productosViewXS(Request $request)
+    {
+        $texto = trim($request->get('buscar'));
+        $productos = DB::table('productos')->select('*')
+            ->where('talle', '=', 'XS')
+            ->paginate(10);
+        return view('producto.catalogo', compact('productos', 'texto'))
+            ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
+    }
+
+    public function productosViewS(Request $request)
+    {
+        $texto = trim($request->get('buscar'));
+        $productos = DB::table('productos')->select('*')
+            ->where('talle', '=', 'S')
+            ->paginate(10);
+        return view('producto.catalogo', compact('productos', 'texto'))
+            ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
+    }
+
+    public function productosViewM(Request $request)
+    {
+        $texto = trim($request->get('buscar'));
+        $productos = DB::table('productos')->select('*')
+            ->where('talle', '=', 'M')
+            ->paginate(10);
+        return view('producto.catalogo', compact('productos', 'texto'))
+            ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
+    }
+
+    public function productosViewL(Request $request)
+    {
+        $texto = trim($request->get('buscar'));
+        $productos = DB::table('productos')->select('*')
+            ->where('talle', '=', 'L')
+            ->paginate(10);
+        return view('producto.catalogo', compact('productos', 'texto'))
+            ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
+    }
+
+    public function productosViewXL(Request $request)
+    {
+        $texto = trim($request->get('buscar'));
+        $productos = DB::table('productos')->select('*')
+            ->where('talle', '=', 'XL')
+            ->paginate(10);
+        return view('producto.catalogo', compact('productos', 'texto'))
+            ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
+    }
+
+    public function productosViewXXL(Request $request)
+    {
+        $texto = trim($request->get('buscar'));
+        $productos = DB::table('productos')->select('*')
+            ->where('talle', '=', 'XXL')
+            ->paginate(10);
+        return view('producto.catalogo', compact('productos', 'texto'))
+            ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
+    }
+
+
+    public function productosViewXXXL(Request $request)
+    {
+        $texto = trim($request->get('buscar'));
+        $productos = DB::table('productos')->select('*')
+            ->where('talle', '=', 'XXXL')
+            ->paginate(10);
+        return view('producto.catalogo', compact('productos', 'texto'))
             ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
     }
 
@@ -48,11 +135,11 @@ class ProductoController extends Controller
         request()->validate(Producto::$rules);
 
         $datosProducto = request()->except('_token');
-        if($request->hasFile('foto')){
-            $datosProducto['foto']=$request->file('foto')->store('uploads','public');
+        if ($request->hasFile('foto')) {
+            $datosProducto['foto'] = $request->file('foto')->store('uploads', 'public');
         }
 
-        
+
         $producto = Producto::create($datosProducto);
 
         return redirect()->route('producto.index')
@@ -96,12 +183,11 @@ class ProductoController extends Controller
     {
         request()->validate(Producto::$rules);
 
-        $datosProducto = request()->except(['_token','_method']);
-        if($request->hasFile('foto')){
-            $producto=Producto::findOrFail($producto->id);
-            Storage::delete('public/'.$producto->foto);
-            $datosProducto['foto']=$request->file('foto')->store('uploads','public');
-
+        $datosProducto = request()->except(['_token', '_method']);
+        if ($request->hasFile('foto')) {
+            $producto = Producto::findOrFail($producto->id);
+            Storage::delete('public/' . $producto->foto);
+            $datosProducto['foto'] = $request->file('foto')->store('uploads', 'public');
         }
 
         $producto->update($datosProducto);
