@@ -12,6 +12,11 @@ Producto
     .card-img-top{
         border-radius: 30px;
     }
+    .card-img-top:hover{
+        transform: scale(1.05);
+        transform: rotateY(-180deg);
+        transform-style: preserve-3d;
+    }
     .cards:hover {
         transition: all 400ms ease;
         box-shadow: 10px 10px 5px 6px rgba(0, 0, 0, 30%);
@@ -128,15 +133,19 @@ Producto
                 <div class="row" style="margin: auto">
                     @foreach ($productos as $producto)
                     <div class="col-3">
+                    <!-- <a href="{{route('producto.xl')}}"> -->
                         <div class="cards text-black mb-3" style="width: 19rem; margin:auto; margin-top: 20px; background: white;">
                             <img src="{{asset('storage').'/'.$producto->foto}}" class="card-img-top" alt="..." height="250px" style="padding: 20px">
                             <div class="card-body">
+                            <fieldset class="border p-2" style="background-color: #f2f2f2; border-radius: 10px">
                                 <h5 class="card-title">{{$producto->tipo}} {{$producto->marca}}</h5>
                                 <p class="card-text">Talle: {{$producto->talle}} </p>
                                 <p class="card-text">Categoria: {{$producto->categoria}} </p>
-                                <p class="card-text">Precio: ${{$producto->precio}} </p>
-                            </div>
+                                <p class="card-text">Precio: ${{$producto->precio}} </p> 
+                            </fieldset>
+                            </div> 
                         </div>
+                        <!-- </a> -->
                     </div>
                     @endforeach
                 </div>
