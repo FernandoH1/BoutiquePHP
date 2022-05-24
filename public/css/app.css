@@ -4503,8 +4503,20 @@ textarea.form-control-lg {
   color: #fff;
 }
 
-.col-3:hover{
-  box-shadow: 5px 5px 5px 4px rgba(0, 0, 0, 30%); 
+.cards{
+  border-radius: 10px;
+}
+.card-img-top{
+  border-radius: 30px;
+}
+.card-img-top:hover{
+  transform: scale(1.05);
+  transform: rotateY(-180deg);
+}
+.cards:hover {
+  transition: all 400ms ease;
+  box-shadow: 10px 10px 5px 6px rgba(0, 0, 0, 30%);
+  transform: scale(1.05);
 }
 
 .card {

@@ -5,24 +5,6 @@ Producto
 @endsection
 
 @section('content')
-<style>
-    .cards{
-        border-radius: 10px;
-    }
-    .card-img-top{
-        border-radius: 30px;
-    }
-    .card-img-top:hover{
-        transform: scale(1.05);
-        transform: rotateY(-180deg);
-        transform-style: preserve-3d;
-    }
-    .cards:hover {
-        transition: all 400ms ease;
-        box-shadow: 10px 10px 5px 6px rgba(0, 0, 0, 30%);
-        transform: scale(1.05);
-    }
-</style>
 
 <div class="container-fluid">
     <div class="row">
@@ -121,7 +103,8 @@ Producto
                         <!-- Barra de busqueda -->
 
                         <!-- Card con las imagenes -->
-                        @if(count($productos)<=0) <div class="card my-5" style="width: 20rem; margin:auto">
+                        @if(count($productos)<=0) 
+                        <div class="cards my-5" style="width: 20rem; margin:auto">
                             <img src="{{ asset('/img/boutique.png') }}" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">No se encontro pordictos similares</h5>
