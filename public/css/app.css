@@ -4503,6 +4503,10 @@ textarea.form-control-lg {
   color: #fff;
 }
 
+.col-3:hover{
+  box-shadow: 5px 5px 5px 4px rgba(0, 0, 0, 30%); 
+}
+
 .card {
   position: relative;
   display: flex;
