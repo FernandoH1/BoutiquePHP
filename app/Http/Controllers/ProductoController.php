@@ -113,6 +113,58 @@ class ProductoController extends Controller
             ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
     }
 
+    public function productosMayor(Request $request)
+    {
+        $texto = trim($request->get('buscar'));
+        $productos = DB::table('productos')->select('*')
+            ->orderByDesc('precio')
+            ->paginate(10);
+        return view('producto.catalogo', compact('productos', 'texto'))
+            ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
+    }
+
+    public function productosMenor(Request $request)
+    {
+        $texto = trim($request->get('buscar'));
+        $productos = DB::table('productos')->select('*')
+            ->orderBy('precio')
+            ->paginate(10);
+        return view('producto.catalogo', compact('productos', 'texto'))
+            ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
+    }
+
+    public function productosMarcaNike(Request $request)
+    {
+        $texto = trim($request->get('buscar'));
+        $productos = DB::table('productos')->select('*')
+            ->where('marca', '=', 'Nike')
+            ->paginate(10);
+        return view('producto.catalogo', compact('productos', 'texto'))
+            ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
+    }
+
+    public function productosMarcaAdidas(Request $request)
+    {
+        $texto = trim($request->get('buscar'));
+        $productos = DB::table('productos')->select('*')
+            ->where('marca', '=', 'Adidas')
+            ->paginate(10);
+        return view('producto.catalogo', compact('productos', 'texto'))
+            ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
+    }
+
+    public function productosMarcaMarcel(Request $request)
+    {
+        $texto = trim($request->get('buscar'));
+        $productos = DB::table('productos')->select('*')
+            ->where('marca', '=', 'Marcel')
+            ->paginate(10);
+        return view('producto.catalogo', compact('productos', 'texto'))
+            ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
+    }
+
+   
+
     /**
      * Show the form for creating a new resource.
      *

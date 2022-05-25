@@ -5,7 +5,6 @@ Producto
 @endsection
 
 @section('content')
-
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-12">
@@ -43,7 +42,7 @@ Producto
                             @endif
                             <div class="btn-group">
                                 <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle m-3" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <button class="btn dropdown-toggle m-3" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #f3af6e;">
                                         Talles
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -57,45 +56,37 @@ Producto
                                     </ul>
                                 </div>
                                 <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle m-3" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <button class="btn dropdown-toggle m-3" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #f3af6e;">
                                         Color
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                        <li><a class="dropdown-item" href="{{route('producto.xs')}}">XS</a></li>
-                                        <li><a class="dropdown-item" href="{{route('producto.s')}}">S</a></li>
-                                        <li><a class="dropdown-item" href="{{route('producto.m')}}">M</a></li>
-                                        <li><a class="dropdown-item" href="{{route('producto.l')}}">L</a></li>
-                                        <li><a class="dropdown-item" href="{{route('producto.xl')}}">XL</a></li>
-                                        <li><a class="dropdown-item" href="{{route('producto.xxl')}}">XXL</a></li>
-                                        <li><a class="dropdown-item" href="{{route('producto.xxxl')}}">XXXL</a></li>
+                                        <li style="padding:3px"><a class="ui" href="{{route('producto.xs')}}"></a><div style="display:block">Negro</div></li>
+                                        <li style="padding:3px"><a class="ui uiblue" href="{{route('producto.xs')}}"></a><div style="display:block">Azúl</div></li>
+                                        <li style="padding:3px"><a class="ui uibrown" href="{{route('producto.xs')}}"></a><div style="display:block">Marrón</div></li>
+                                        <li style="padding:3px"><a class="ui uigreen" href="{{route('producto.xs')}}"></a><div style="display:block">Verde</div></li>
+                                        <li style="padding:3px"><a class="ui uired" href="{{route('producto.xs')}}"></a><div style="display:block">Rojo</div></li> 
+                                        <li style="padding:3px"><a class="ui uiyellow" href="{{route('producto.xs')}}"></a><div style="display:block">Amarillo</div></li>
+                                        <li style="padding:3px"><a class="ui uiwhite" href="{{route('producto.xs')}}"></a><div style="display:block">Blanco</div></li>
+                                        
                                     </ul>
                                 </div>
                                 <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle m-3" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <button class="btn dropdown-toggle m-3" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #f3af6e;">
                                         Marca
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                        <li><a class="dropdown-item" href="{{route('producto.xs')}}">XS</a></li>
-                                        <li><a class="dropdown-item" href="{{route('producto.s')}}">S</a></li>
-                                        <li><a class="dropdown-item" href="{{route('producto.m')}}">M</a></li>
-                                        <li><a class="dropdown-item" href="{{route('producto.l')}}">L</a></li>
-                                        <li><a class="dropdown-item" href="{{route('producto.xl')}}">XL</a></li>
-                                        <li><a class="dropdown-item" href="{{route('producto.xxl')}}">XXL</a></li>
-                                        <li><a class="dropdown-item" href="{{route('producto.xxxl')}}">XXXL</a></li>
+                                        <li><a class="dropdown-item" href="{{route('producto.nike')}}">Nike</a></li>
+                                        <li><a class="dropdown-item" href="{{route('producto.adidas')}}">Adidas</a></li>
+                                        <li><a class="dropdown-item" href="{{route('producto.marcel')}}">Marcel</a></li>
                                     </ul>
                                 </div>
                                 <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle m-3" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <button class="btn dropdown-toggle m-3" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #f3af6e;">
                                         Precio
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                        <li><a class="dropdown-item" href="{{route('producto.xs')}}">XS</a></li>
-                                        <li><a class="dropdown-item" href="{{route('producto.s')}}">S</a></li>
-                                        <li><a class="dropdown-item" href="{{route('producto.m')}}">M</a></li>
-                                        <li><a class="dropdown-item" href="{{route('producto.l')}}">L</a></li>
-                                        <li><a class="dropdown-item" href="{{route('producto.xl')}}">XL</a></li>
-                                        <li><a class="dropdown-item" href="{{route('producto.xxl')}}">XXL</a></li>
-                                        <li><a class="dropdown-item" href="{{route('producto.xxxl')}}">XXXL</a></li>
+                                        <li><a class="dropdown-item" href="{{route('producto.preciom')}}">Menor Precio</a></li>
+                                        <li><a class="dropdown-item" href="{{route('producto.precioM')}}">Mayor Precio</a></li>
                                     </ul>
                                 </div>
                             </div>

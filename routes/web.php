@@ -37,6 +37,12 @@ Route::get('/l', [ProductoController::class, 'productosViewL'])->middleware('aut
 Route::get('/xl', [ProductoController::class, 'productosViewXL'])->middleware('auth')->name('producto.xl');
 Route::get('/xxl', [ProductoController::class, 'productosViewXXL'])->middleware('auth')->name('producto.xxl');
 Route::get('/xxxl', [ProductoController::class, 'productosViewXXXL'])->middleware('auth')->name('producto.xxxl');   
+Route::get('/menor', [ProductoController::class, 'productosMenor'])->middleware('auth')->name('producto.preciom');
+Route::get('/mayor', [ProductoController::class, 'productosMayor'])->middleware('auth')->name('producto.precioM'); 
+Route::get('/nike', [ProductoController::class, 'productosMarcaNike'])->middleware('auth')->name('producto.nike'); 
+Route::get('/adidas', [ProductoController::class, 'productosMarcaAdidas'])->middleware('auth')->name('producto.adidas'); 
+Route::get('/marcel', [ProductoController::class, 'productosMarcaMarcel'])->middleware('auth')->name('producto.marcel'); 
+
 
 
 //Route::get('catalogo', [ProductoController::class, 'catalogo'])->middleware('auth')->name('producto.catalogo');
