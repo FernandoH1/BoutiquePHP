@@ -29,18 +29,3 @@
 </div>
 @endsection
 
-
-
-<!-- @section('content')
-<div class="container" style="height: auto;">
-  <div class="row align-items-center">
-    <div class="col-md-9 ml-auto mr-auto mb-3 text-center">
-      <h3>{{ __('¡¡Bienvendi@ al Login de Boutique Anita!!') }} </h3>
-    </div>
-    
-      </div>
-    </div>
-  </div>
-</div>
-@endsection -->
-
