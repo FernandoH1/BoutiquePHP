@@ -60,13 +60,13 @@ Producto
                                         Color
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                        <li style="padding:3px"><a class="ui" href="{{route('producto.xs')}}"></a><div style="display:block">Negro</div></li>
-                                        <li style="padding:3px"><a class="ui uiblue" href="{{route('producto.xs')}}"></a><div style="display:block">Azúl</div></li>
-                                        <li style="padding:3px"><a class="ui uibrown" href="{{route('producto.xs')}}"></a><div style="display:block">Marrón</div></li>
-                                        <li style="padding:3px"><a class="ui uigreen" href="{{route('producto.xs')}}"></a><div style="display:block">Verde</div></li>
-                                        <li style="padding:3px"><a class="ui uired" href="{{route('producto.xs')}}"></a><div style="display:block">Rojo</div></li> 
-                                        <li style="padding:3px"><a class="ui uiyellow" href="{{route('producto.xs')}}"></a><div style="display:block">Amarillo</div></li>
-                                        <li style="padding:3px"><a class="ui uiwhite" href="{{route('producto.xs')}}"></a><div style="display:block">Blanco</div></li>
+                                        <li style="padding:3px"><a class="ui" href="{{route('producto.negro')}}"></a><div style="display:block">Negro</div></li>
+                                        <li style="padding:3px"><a class="ui uiblue" href="{{route('producto.azul')}}"></a><div style="display:block">Azúl</div></li>
+                                        <li style="padding:3px"><a class="ui uibrown" href="{{route('producto.marron')}}"></a><div style="display:block">Marrón</div></li>
+                                        <li style="padding:3px"><a class="ui uigreen" href="{{route('producto.verde')}}"></a><div style="display:block">Verde</div></li>
+                                        <li style="padding:3px"><a class="ui uired" href="{{route('producto.rojo')}}"></a><div style="display:block">Rojo</div></li> 
+                                        <li style="padding:3px"><a class="ui uiyellow" href="{{route('producto.amarillo')}}"></a><div style="display:block">Amarillo</div></li>
+                                        <li style="padding:3px"><a class="ui uiwhite" href="{{route('producto.blanco')}}"></a><div style="display:block">Blanco</div></li>
                                         
                                     </ul>
                                 </div>

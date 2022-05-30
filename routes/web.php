@@ -42,6 +42,13 @@ Route::get('/mayor', [ProductoController::class, 'productosMayor'])->middleware(
 Route::get('/nike', [ProductoController::class, 'productosMarcaNike'])->middleware('auth')->name('producto.nike'); 
 Route::get('/adidas', [ProductoController::class, 'productosMarcaAdidas'])->middleware('auth')->name('producto.adidas'); 
 Route::get('/marcel', [ProductoController::class, 'productosMarcaMarcel'])->middleware('auth')->name('producto.marcel'); 
+Route::get('/Negro', [ProductoController::class, 'productosColorNegro'])->middleware('auth')->name('producto.negro'); 
+Route::get('/Azul', [ProductoController::class, 'productosColorAzul'])->middleware('auth')->name('producto.azul');
+Route::get('/Marron', [ProductoController::class, 'productosColorMarron'])->middleware('auth')->name('producto.marron');
+Route::get('/Verde', [ProductoController::class, 'productosColorVerde'])->middleware('auth')->name('producto.verde');
+Route::get('/Rojo', [ProductoController::class, 'productosColorRojo'])->middleware('auth')->name('producto.rojo');
+Route::get('/Amarillo', [ProductoController::class, 'productosColorAmarillo'])->middleware('auth')->name('producto.amarillo');
+Route::get('/Blanco', [ProductoController::class, 'productosColorBlanco'])->middleware('auth')->name('producto.blanco');
 
 
 

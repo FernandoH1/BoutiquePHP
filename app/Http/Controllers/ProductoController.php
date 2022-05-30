@@ -163,6 +163,76 @@ class ProductoController extends Controller
             ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
     }
 
+    public function productosColorNegro(Request $request)
+    {
+        $texto = trim($request->get('buscar'));
+        $productos = DB::table('productos')->select('*')
+            ->where('color', '=', 'Negro')
+            ->paginate(10);
+        return view('producto.catalogo', compact('productos', 'texto'))
+            ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
+    }
+
+    public function productosColorAzul(Request $request)
+    {
+        $texto = trim($request->get('buscar'));
+        $productos = DB::table('productos')->select('*')
+            ->where('color', '=', 'Azul')
+            ->paginate(10);
+        return view('producto.catalogo', compact('productos', 'texto'))
+            ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
+    }
+
+    public function productosColorMarron(Request $request)
+    {
+        $texto = trim($request->get('buscar'));
+        $productos = DB::table('productos')->select('*')
+            ->where('color', '=', 'Marron')
+            ->paginate(10);
+        return view('producto.catalogo', compact('productos', 'texto'))
+            ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
+    }
+
+    public function productosColorVerde(Request $request)
+    {
+        $texto = trim($request->get('buscar'));
+        $productos = DB::table('productos')->select('*')
+            ->where('color', '=', 'Verde')
+            ->paginate(10);
+        return view('producto.catalogo', compact('productos', 'texto'))
+            ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
+    }
+
+    public function productosColorRojo(Request $request)
+    {
+        $texto = trim($request->get('buscar'));
+        $productos = DB::table('productos')->select('*')
+            ->where('color', '=', 'Rojo')
+            ->paginate(10);
+        return view('producto.catalogo', compact('productos', 'texto'))
+            ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
+    }
+
+    public function productosColorAmarillo(Request $request)
+    {
+        $texto = trim($request->get('buscar'));
+        $productos = DB::table('productos')->select('*')
+            ->where('color', '=', 'Amarillo')
+            ->paginate(10);
+        return view('producto.catalogo', compact('productos', 'texto'))
+            ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
+    }
+
+    public function productosColorBlanco(Request $request)
+    {
+        $texto = trim($request->get('buscar'));
+        $productos = DB::table('productos')->select('*')
+            ->where('color', '=', 'Blanco')
+            ->paginate(10);
+        return view('producto.catalogo', compact('productos', 'texto'))
+            ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
+    }
+
    
 
     /**
