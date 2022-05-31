@@ -4544,6 +4544,13 @@ textarea.form-control-lg {
   background-color: rgb(0, 255, 0);
 }
 
+.catalogobtn:hover{
+  background-color: #dda26a;
+  font-size: 20px;
+  color:#000;
+  box-shadow: 4px 4px 3px 4px rgba(0, 0, 0, 30%);
+}
+
 .btns{
   background-color: #f3af6e;
   border-radius: 5px;
@@ -4553,6 +4560,17 @@ textarea.form-control-lg {
 .btns:hover{
   background-color: #dda26a;
   box-shadow: 1px 1px 3px 2px rgba(0, 0, 0, 30%);
+}
+
+.carousel-inner{
+  width: 50%;
+  height: 50%;
+}
+
+.carrucel{
+  width: 100%;
+  height: 350px;
+  margin:auto;
 }
 
 .cards{
