@@ -32,7 +32,7 @@ Producto
                             <div class="input-group mb-3">
                                 <input type="text" name="buscar" class="form-control" placeholder="{{ __('Buscar...') }}" value="{{ $texto }}" required>
                                 <div class="input-group-append">
-                                    <button class="btn btn-primary" type="submit">Buscar</button>
+                                    <button class="btns btn text-black" type="submit">Buscar</button>
                                 </div>
                             </div>
                             @if ($errors->has('buscar'))
