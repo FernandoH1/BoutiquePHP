@@ -30,7 +30,7 @@ Producto
                         <div class="bmd-form-group{{ $errors->has('buscar') ? ' has-danger' : '' }} my-3">
 
                             <div class="input-group mb-3">
-                                <input type="text" name="buscar" class="form-control" placeholder="{{ __('Buscar...') }}" value="{{ $texto }}" required>
+                                <input type="text" name="buscar" class="form-control" placeholder="{{ __('Buscar...') }}" required>
                                 <div class="input-group-append">
                                     <button class="btns btn text-black" type="submit">Buscar</button>
                                 </div>
@@ -45,14 +45,75 @@ Producto
                                     <button class="btn dropdown-toggle m-3" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #f3af6e;">
                                         Talles
                                     </button>
+                                    <!-- <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    @foreach ($productos as $producto)
+                                        <li>
+                                            <a 
+                                                
+                                                class="dropdown-item" href="{{route('producto.talle',[$producto->talle])}}"
+                                            >
+                                                {{$producto->talle}}
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                    </ul> -->
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                        <li><a class="dropdown-item" href="{{route('producto.xs')}}">XS</a></li>
-                                        <li><a class="dropdown-item" href="{{route('producto.s')}}">S</a></li>
-                                        <li><a class="dropdown-item" href="{{route('producto.m')}}">M</a></li>
-                                        <li><a class="dropdown-item" href="{{route('producto.l')}}">L</a></li>
-                                        <li><a class="dropdown-item" href="{{route('producto.xl')}}">XL</a></li>
-                                        <li><a class="dropdown-item" href="{{route('producto.xxl')}}">XXL</a></li>
-                                        <li><a class="dropdown-item" href="{{route('producto.xxxl')}}">XXXL</a></li>
+                                        <li>
+                                            <a 
+                                                <?php $talle = "xs";?> 
+                                                class="dropdown-item" href="{{route('producto.talle',[$talle])}}"
+                                            >
+                                                XS
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a 
+                                                <?php $talle = "s"; ?> 
+                                                class="dropdown-item" href="{{route('producto.talle',[$talle])}}"
+                                            >
+                                                S
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a 
+                                                <?php $talle = "m"; ?> 
+                                                class="dropdown-item" href="{{route('producto.talle',[$talle])}}"
+                                            >
+                                                M
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a 
+                                                <?php $talle = "l"; ?> 
+                                                class="dropdown-item" href="{{route('producto.talle',[$talle])}}"
+                                            >
+                                                L
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a 
+                                                <?php $talle = "xl"; ?> 
+                                                class="dropdown-item" href="{{route('producto.talle',[$talle])}}"
+                                            >
+                                                XL
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a 
+                                                <?php $talle = "xxl"; ?> 
+                                                class="dropdown-item" href="{{route('producto.talle',[$talle])}}"
+                                            >
+                                                XXL
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a 
+                                                <?php $talle = "xxxl"; ?> 
+                                                class="dropdown-item" href="{{route('producto.talle',[$talle])}}"
+                                            >
+                                                XXXL
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                                 <div class="dropdown">
@@ -60,14 +121,28 @@ Producto
                                         Color
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                        <li style="padding:3px"><a class="ui" href="{{route('producto.negro')}}"></a><div style="display:block">Negro</div></li>
-                                        <li style="padding:3px"><a class="ui uiblue" href="{{route('producto.azul')}}"></a><div style="display:block">Azúl</div></li>
-                                        <li style="padding:3px"><a class="ui uibrown" href="{{route('producto.marron')}}"></a><div style="display:block">Marrón</div></li>
-                                        <li style="padding:3px"><a class="ui uigreen" href="{{route('producto.verde')}}"></a><div style="display:block">Verde</div></li>
-                                        <li style="padding:3px"><a class="ui uired" href="{{route('producto.rojo')}}"></a><div style="display:block">Rojo</div></li> 
-                                        <li style="padding:3px"><a class="ui uiyellow" href="{{route('producto.amarillo')}}"></a><div style="display:block">Amarillo</div></li>
-                                        <li style="padding:3px"><a class="ui uiwhite" href="{{route('producto.blanco')}}"></a><div style="display:block">Blanco</div></li>
-                                        
+                                        <li style="padding:3px"><a class="ui" href="{{route('producto.negro')}}"></a>
+                                            <div style="display:block">Negro</div>
+                                        </li>
+                                        <li style="padding:3px"><a class="ui uiblue" href="{{route('producto.azul')}}"></a>
+                                            <div style="display:block">Azúl</div>
+                                        </li>
+                                        <li style="padding:3px"><a class="ui uibrown" href="{{route('producto.marron')}}"></a>
+                                            <div style="display:block">Marrón</div>
+                                        </li>
+                                        <li style="padding:3px"><a class="ui uigreen" href="{{route('producto.verde')}}"></a>
+                                            <div style="display:block">Verde</div>
+                                        </li>
+                                        <li style="padding:3px"><a class="ui uired" href="{{route('producto.rojo')}}"></a>
+                                            <div style="display:block">Rojo</div>
+                                        </li>
+                                        <li style="padding:3px"><a class="ui uiyellow" href="{{route('producto.amarillo')}}"></a>
+                                            <div style="display:block">Amarillo</div>
+                                        </li>
+                                        <li style="padding:3px"><a class="ui uiwhite" href="{{route('producto.blanco')}}"></a>
+                                            <div style="display:block">Blanco</div>
+                                        </li>
+
                                     </ul>
                                 </div>
                                 <div class="dropdown">
@@ -94,8 +169,7 @@ Producto
                         <!-- Barra de busqueda -->
 
                         <!-- Card con las imagenes -->
-                        @if(count($productos)<=0) 
-                        <div class="cards my-5" style="width: 20rem; margin:auto">
+                        @if(count($productos)<=0) <div class="cards my-5" style="width: 20rem; margin:auto">
                             <img src="{{ asset('/img/boutique.png') }}" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">No se encontro pordictos similares</h5>
@@ -107,17 +181,16 @@ Producto
                 <div class="row" style="margin: auto">
                     @foreach ($productos as $producto)
                     <div class="col-3">
-                    <!-- <a href="{{route('producto.xl')}}"> -->
                         <div class="cards text-black mb-3" style="width: 19rem; margin:auto; margin-top: 20px; background: white;">
                             <img src="{{asset('storage').'/'.$producto->foto}}" class="card-img-top" alt="..." height="250px" style="padding: 20px">
                             <div class="card-body">
-                            <fieldset class="border p-2" style="background-color: #f2f2f2; border-radius: 10px">
-                                <h5 class="card-title">{{$producto->tipo}} {{$producto->marca}}</h5>
-                                <p class="card-text">Talle: {{$producto->talle}} </p>
-                                <p class="card-text">Categoria: {{$producto->categoria}} </p>
-                                <p class="card-text">Precio: ${{$producto->precio}} </p> 
-                            </fieldset>
-                            </div> 
+                                <fieldset class="border p-2" style="background-color: #f2f2f2; border-radius: 10px">
+                                    <h5 class="card-title">{{$producto->tipo}} {{$producto->marca}}</h5>
+                                    <p class="card-text">Talle: {{$producto->talle}} </p>
+                                    <p class="card-text">Categoria: {{$producto->categoria}} </p>
+                                    <p class="card-text">Precio: ${{$producto->precio}} </p>
+                                </fieldset>
+                            </div>
                         </div>
                         <!-- </a> -->
                     </div>

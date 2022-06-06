@@ -42,74 +42,100 @@ class ProductoController extends Controller
             ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
     }
 
-    public function productosViewXS(Request $request)
+    public function productosVariables($talle)
     {
-        $texto = trim($request->get('buscar'));
+
         $productos = DB::table('productos')->select('*')
-            ->where('talle', '=', 'XS')
+            ->where('talle', '=', $talle)
             ->paginate(10);
-        return view('producto.catalogo', compact('productos', 'texto'))
+        return view('producto.catalogo', compact('productos'))
             ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
     }
+    // public function productosViewXS(Request $request)
+    // {
+    //     $texto = trim($request->get('buscar'));
+    //     $productos = DB::table('productos')->select('*')
+    //         ->where('talle', '=', 'XS')
+    //         ->paginate(10);
+    //     return view('producto.catalogo', compact('productos', 'texto'))
+    //         ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
+    // }
 
-    public function productosViewS(Request $request)
+    // public function productosViewS(Request $request)
+    // {
+    //     $texto = trim($request->get('buscar'));
+    //     $productos = DB::table('productos')->select('*')
+    //         ->where('talle', '=', 'S')
+    //         ->paginate(10);
+    //     return view('producto.catalogo', compact('productos', 'texto'))
+    //         ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
+    // }
+
+    // public function productosViewM(Request $request)
+    // {
+    //     $texto = trim($request->get('buscar'));
+    //     $productos = DB::table('productos')->select('*')
+    //         ->where('talle', '=', 'M')
+    //         ->paginate(10);
+    //     return view('producto.catalogo', compact('productos', 'texto'))
+    //         ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
+    // }
+
+    // public function productosViewL(Request $request)
+    // {
+    //     $texto = trim($request->get('buscar'));
+    //     $productos = DB::table('productos')->select('*')
+    //         ->where('talle', '=', 'L')
+    //         ->paginate(10);
+    //     return view('producto.catalogo', compact('productos', 'texto'))
+    //         ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
+    // }
+
+    // public function productosViewXL(Request $request)
+    // {
+    //     $texto = trim($request->get('buscar'));
+    //     $productos = DB::table('productos')->select('*')
+    //         ->where('talle', '=', 'XL')
+    //         ->paginate(10);
+    //     return view('producto.catalogo', compact('productos', 'texto'))
+    //         ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
+    // }
+
+    // public function productosViewXXL(Request $request)
+    // {
+    //     $texto = trim($request->get('buscar'));
+    //     $productos = DB::table('productos')->select('*')
+    //         ->where('talle', '=', 'XXL')
+    //         ->paginate(10);
+    //     return view('producto.catalogo', compact('productos', 'texto'))
+    //         ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
+    // }
+
+
+    // public function productosViewXXXL(Request $request)
+    // {
+    //     $texto = trim($request->get('buscar'));
+    //     $productos = DB::table('productos')->select('*')
+    //         ->where('talle', '=', 'XXXL')
+    //         ->paginate(10);
+    //     return view('producto.catalogo', compact('productos', 'texto'))
+    //         ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
+    // }
+
+    public function productoOrdenarPorPrecio($orden)
     {
-        $texto = trim($request->get('buscar'));
-        $productos = DB::table('productos')->select('*')
-            ->where('talle', '=', 'S')
-            ->paginate(10);
-        return view('producto.catalogo', compact('productos', 'texto'))
-            ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
-    }
+        if($orden == 'mayor'){
+            $productos = DB::table('productos')->select('*')
+                ->orderByDesc('precio')
+                ->paginate(10);
+            return view('producto.catalogo', compact('productos'))
+                ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
+        }
 
-    public function productosViewM(Request $request)
-    {
-        $texto = trim($request->get('buscar'));
         $productos = DB::table('productos')->select('*')
-            ->where('talle', '=', 'M')
+            ->orderBy('precio')
             ->paginate(10);
-        return view('producto.catalogo', compact('productos', 'texto'))
-            ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
-    }
-
-    public function productosViewL(Request $request)
-    {
-        $texto = trim($request->get('buscar'));
-        $productos = DB::table('productos')->select('*')
-            ->where('talle', '=', 'L')
-            ->paginate(10);
-        return view('producto.catalogo', compact('productos', 'texto'))
-            ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
-    }
-
-    public function productosViewXL(Request $request)
-    {
-        $texto = trim($request->get('buscar'));
-        $productos = DB::table('productos')->select('*')
-            ->where('talle', '=', 'XL')
-            ->paginate(10);
-        return view('producto.catalogo', compact('productos', 'texto'))
-            ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
-    }
-
-    public function productosViewXXL(Request $request)
-    {
-        $texto = trim($request->get('buscar'));
-        $productos = DB::table('productos')->select('*')
-            ->where('talle', '=', 'XXL')
-            ->paginate(10);
-        return view('producto.catalogo', compact('productos', 'texto'))
-            ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
-    }
-
-
-    public function productosViewXXXL(Request $request)
-    {
-        $texto = trim($request->get('buscar'));
-        $productos = DB::table('productos')->select('*')
-            ->where('talle', '=', 'XXXL')
-            ->paginate(10);
-        return view('producto.catalogo', compact('productos', 'texto'))
+        return view('producto.catalogo', compact('productos'))
             ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
     }
 
