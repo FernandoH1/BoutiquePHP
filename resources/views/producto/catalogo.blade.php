@@ -45,76 +45,23 @@ Producto
                                     <button class="btn dropdown-toggle m-3" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #f3af6e;">
                                         Talles
                                     </button>
-                                    <!-- <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    @foreach ($productos as $producto)
-                                        <li>
-                                            <a 
-                                                
-                                                class="dropdown-item" href="{{route('producto.talle',[$producto->talle])}}"
-                                            >
-                                                {{$producto->talle}}
-                                            </a>
-                                        </li>
-                                    @endforeach
-                                    </ul> -->
+
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                        <li>
-                                            <a 
-                                                <?php $talle = "xs";?> 
-                                                class="dropdown-item" href="{{route('producto.talle',[$talle])}}"
-                                            >
-                                                XS
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a 
-                                                <?php $talle = "s"; ?> 
-                                                class="dropdown-item" href="{{route('producto.talle',[$talle])}}"
-                                            >
-                                                S
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a 
-                                                <?php $talle = "m"; ?> 
-                                                class="dropdown-item" href="{{route('producto.talle',[$talle])}}"
-                                            >
-                                                M
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a 
-                                                <?php $talle = "l"; ?> 
-                                                class="dropdown-item" href="{{route('producto.talle',[$talle])}}"
-                                            >
-                                                L
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a 
-                                                <?php $talle = "xl"; ?> 
-                                                class="dropdown-item" href="{{route('producto.talle',[$talle])}}"
-                                            >
-                                                XL
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a 
-                                                <?php $talle = "xxl"; ?> 
-                                                class="dropdown-item" href="{{route('producto.talle',[$talle])}}"
-                                            >
-                                                XXL
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a 
-                                                <?php $talle = "xxxl"; ?> 
-                                                class="dropdown-item" href="{{route('producto.talle',[$talle])}}"
-                                            >
-                                                XXXL
-                                            </a>
-                                        </li>
+                                        @foreach ($talles as $item)
+                                            <li>
+                                                <a 
+                                                    <?php 
+                                                        $talle = $item->talle;
+                                                    ?>
+                                                    class="dropdown-item" href="{{route('producto.catalogo')}}"
+                                                >
+                                                    {{$item->talle}}
+                                                </a>
+                                            </li>
+                                        @endforeach
                                     </ul>
+                                    
+                                   
                                 </div>
                                 <div class="dropdown">
                                     <button class="btn dropdown-toggle m-3" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #f3af6e;">
@@ -200,7 +147,6 @@ Producto
                 </form>
             </div>
         </div>
-        {!! $productos->links() !!}
     </div>
 </div>
 </div>

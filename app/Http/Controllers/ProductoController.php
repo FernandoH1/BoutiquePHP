@@ -31,97 +31,38 @@ class ProductoController extends Controller
     public function catalogoView(Request $request)
     {
         $texto = trim($request->get('buscar'));
+
+        $talles = DB::table('productos')
+            ->select('talle')
+            ->orderBy('talle','asc')
+            ->distinct()->get();
+
+        
         //Select * From productos
-        $productos = DB::table('productos')->select('*')
-            ->where('tipo', 'LIKE', '%' . $texto . '%')
-            ->orWhere('marca', 'LIKE', '%' . $texto . '%')
-            ->orderBy('tipo', 'asc')
-            ->paginate(10);
+        $productos = DB::table('productos')
+        ->select('*')
+        ->where('tipo', 'LIKE', '%' . $texto . '%')
+        ->orWhere('marca', 'LIKE', '%' . $texto . '%')
+        ->orderBy('tipo', 'asc')
+        ->paginate(10);
 
         return view('producto.catalogo', compact('productos', 'texto'))
-            ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
+            ->with('i', (request()->input('page', 1) - 1) * $productos->perPage())
+            ->with(compact('talles'));
     }
 
-    public function productosVariables($talle)
-    {
-
-        $productos = DB::table('productos')->select('*')
-            ->where('talle', '=', $talle)
-            ->paginate(10);
-        return view('producto.catalogo', compact('productos'))
-            ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
-    }
-    // public function productosViewXS(Request $request)
+    // View encargada de los talles
+    // public function productosVariables($talle)
     // {
-    //     $texto = trim($request->get('buscar'));
+    //     $talles = DB::table('productos')->select('talle')->distinct()->get();
     //     $productos = DB::table('productos')->select('*')
-    //         ->where('talle', '=', 'XS')
-    //         ->paginate(10);
-    //     return view('producto.catalogo', compact('productos', 'texto'))
-    //         ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
+    //         ->where('talle', '=', $talle);
+
+    //     return view('producto.catalogo', compact('productos'))
+    //         ->with(compact('talles'));
     // }
-
-    // public function productosViewS(Request $request)
-    // {
-    //     $texto = trim($request->get('buscar'));
-    //     $productos = DB::table('productos')->select('*')
-    //         ->where('talle', '=', 'S')
-    //         ->paginate(10);
-    //     return view('producto.catalogo', compact('productos', 'texto'))
-    //         ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
-    // }
-
-    // public function productosViewM(Request $request)
-    // {
-    //     $texto = trim($request->get('buscar'));
-    //     $productos = DB::table('productos')->select('*')
-    //         ->where('talle', '=', 'M')
-    //         ->paginate(10);
-    //     return view('producto.catalogo', compact('productos', 'texto'))
-    //         ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
-    // }
-
-    // public function productosViewL(Request $request)
-    // {
-    //     $texto = trim($request->get('buscar'));
-    //     $productos = DB::table('productos')->select('*')
-    //         ->where('talle', '=', 'L')
-    //         ->paginate(10);
-    //     return view('producto.catalogo', compact('productos', 'texto'))
-    //         ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
-    // }
-
-    // public function productosViewXL(Request $request)
-    // {
-    //     $texto = trim($request->get('buscar'));
-    //     $productos = DB::table('productos')->select('*')
-    //         ->where('talle', '=', 'XL')
-    //         ->paginate(10);
-    //     return view('producto.catalogo', compact('productos', 'texto'))
-    //         ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
-    // }
-
-    // public function productosViewXXL(Request $request)
-    // {
-    //     $texto = trim($request->get('buscar'));
-    //     $productos = DB::table('productos')->select('*')
-    //         ->where('talle', '=', 'XXL')
-    //         ->paginate(10);
-    //     return view('producto.catalogo', compact('productos', 'texto'))
-    //         ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
-    // }
-
-
-    // public function productosViewXXXL(Request $request)
-    // {
-    //     $texto = trim($request->get('buscar'));
-    //     $productos = DB::table('productos')->select('*')
-    //         ->where('talle', '=', 'XXXL')
-    //         ->paginate(10);
-    //     return view('producto.catalogo', compact('productos', 'texto'))
-    //         ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
-    // }
-
+    
+    // View 
     public function productoOrdenarPorPrecio($orden)
     {
         if($orden == 'mayor'){
@@ -280,6 +221,17 @@ class ProductoController extends Controller
     public function store(Request $request)
     {
         request()->validate(Producto::$rules);
+        
+        $campos = [
+            'foto'=>'required'
+        ];
+
+        $mensaje = [
+            'required'=>'El: atributo es requerido',
+            'foto.required' => 'La foto es requerida'
+        ];
+
+        $this->validate($request, $campos, $mensaje);
 
         $datosProducto = request()->except('_token');
         if ($request->hasFile('foto')) {
@@ -314,9 +266,9 @@ class ProductoController extends Controller
      */
     public function edit($id)
     {
-        $producto = Producto::find($id);
+        $producto = Producto::findOrFail($id);
 
-        return view('producto.edit', compact('producto'));
+        return view('producto.edit', compact('producto') );
     }
 
     /**
@@ -331,6 +283,7 @@ class ProductoController extends Controller
         request()->validate(Producto::$rules);
 
         $datosProducto = request()->except(['_token', '_method']);
+
         if ($request->hasFile('foto')) {
             $producto = Producto::findOrFail($producto->id);
             Storage::delete('public/' . $producto->foto);

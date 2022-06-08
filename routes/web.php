@@ -19,20 +19,13 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource('producto', ProductoController::class)->middleware('auth.admin');
 
 
-Route::get('/catalogo/{talle}', [ProductoController::class, 'productosVariables'])->middleware('auth')->name('producto.talle');
 
 Route::get('/catalogo', [ProductoController::class, 'catalogoView'])->middleware('auth')->name('producto.catalogo');
-
-// Route::get('/xs', [ProductoController::class, 'productosViewXS'])->middleware('auth')->name('producto.xs');
-// Route::get('/s', [ProductoController::class, 'productosViewS'])->middleware('auth')->name('producto.s');  
-// Route::get('/m', [ProductoController::class, 'productosViewM'])->middleware('auth')->name('producto.m');    
-// Route::get('/l', [ProductoController::class, 'productosViewL'])->middleware('auth')->name('producto.l');
-// Route::get('/xl', [ProductoController::class, 'productosViewXL'])->middleware('auth')->name('producto.xl');
-// Route::get('/xxl', [ProductoController::class, 'productosViewXXL'])->middleware('auth')->name('producto.xxl');
-// Route::get('/xxxl', [ProductoController::class, 'productosViewXXXL'])->middleware('auth')->name('producto.xxxl');
-
-
+// Ruta para mostrar los talles de la DB
+// Route::get('/catalogo/{talle}', [ProductoController::class, 'productosVariables'])->middleware('auth')->name('producto.talle')
+//Ruta para mostrar por orden de precio
 Route::get('/precio/{orden}', [ProductoController::class, 'productoOrdenarPorPrecio'])->middleware('auth')->name('producto.precio');
+
 Route::get('/menor', [ProductoController::class, 'productosMenor'])->middleware('auth')->name('producto.preciom');
 Route::get('/mayor', [ProductoController::class, 'productosMayor'])->middleware('auth')->name('producto.precioM');
 

@@ -32,7 +32,7 @@ class Producto extends Model
 		'marca' => 'required',
 		'color' => 'required',
 		'talle' => 'required',
-		'foto' => 'required',
+		'foto',
 		'categoria' => 'required',
     ];
 
