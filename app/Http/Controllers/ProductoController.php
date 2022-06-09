@@ -43,29 +43,54 @@ class ProductoController extends Controller
     {
         $texto = trim($request->get('buscar'));
 
+        $filtroTalle = DB::table('productos')
+            ->select('talle')
+            ->orderBy('talle', 'asc')
+            ->distinct()->get();
+
+        $filtroColor = DB::table('productos')
+            ->select('color')
+            ->orderBy('color', 'asc')
+            ->distinct()->get();
+
         //Select * From productos
         $productos = DB::table('productos')->select('*')
             ->where('tipo', 'LIKE', '%' . $texto . '%')
             ->orWhere('marca', 'LIKE', '%' . $texto . '%')
             ->orderBy('tipo', 'asc')
-            ->paginate(10);
+            ->paginate();//GOD
 
-        return view('producto.catalogo', compact('productos', 'texto'));
+        return view('producto.catalogo', compact('productos', 'texto'))
+            ->with(compact('filtroTalle'))
+            ->with(compact('filtroColor'));
                 
     }
 
-    public function productosVariables($talle)
+    public function productosVariables($talle, $color)
     {
         $filtroTalle = DB::table('productos')
             ->select('talle')
             ->orderBy('talle', 'asc')
             ->distinct()->get();
 
+        $filtroColor = DB::table('productos')
+            ->select('color')
+            ->orderBy('color', 'asc')
+            ->distinct()->get();
+
+            
+            var_dump($talle);
+
+
+
         $productos = DB::table('productos')->select('*')
             ->where('talle', '=', $talle)
-            ->paginate(10);
+            ->orWhere('color', '=', $color)
+            ->paginate();
+
         return view('producto.catalogo', compact('productos'))
-        ->with(compact('filtroTalle'));
+            ->with(compact('filtroTalle'))
+            ->with(compact('filtroColor'));
     }
     
     

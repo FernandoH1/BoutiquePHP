@@ -41,6 +41,8 @@ Producto
                             </div>
                             @endif
                             <div class="btn-group">
+
+
                                 <div class="dropdown">
                                     <button class="btn dropdown-toggle m-3" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #f3af6e;">
                                         Talles
@@ -50,10 +52,30 @@ Producto
                                     @foreach ($filtroTalle as $producto)
                                         <li>
                                             <a 
-                                                
-                                                class="dropdown-item" href="{{route('producto.talle',[$producto->talle])}}"
+                                                class="dropdown-item" href="{{route('producto.talle',[ $producto->talle, '-' ])}}"
                                             >
                                                 {{$producto->talle}}
+                                            </a>
+                                        </li>
+
+                                    @endforeach
+                                    </ul>
+                                    
+                                   
+                                </div>
+
+                                <div class="dropdown">
+                                    <button class="btn dropdown-toggle m-3" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #f3af6e;">
+                                        Talles
+                                    </button>
+
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    @foreach ($filtroColor as $producto)
+                                        <li>
+                                            <a 
+                                                class="dropdown-item" href="{{route('producto.talle',['-', $producto->color])}}"
+                                            >
+                                                {{$producto->color}}
                                             </a>
                                         </li>
                                     @endforeach
@@ -61,6 +83,7 @@ Producto
                                     
                                    
                                 </div>
+
                                 <div class="dropdown">
                                     <button class="btn dropdown-toggle m-3" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #f3af6e;">
                                         Color
