@@ -47,18 +47,16 @@ Producto
                                     </button>
 
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                        @foreach ($talles as $item)
-                                            <li>
-                                                <a 
-                                                    <?php 
-                                                        $talle = $item->talle;
-                                                    ?>
-                                                    class="dropdown-item" href="{{route('producto.catalogo')}}"
-                                                >
-                                                    {{$item->talle}}
-                                                </a>
-                                            </li>
-                                        @endforeach
+                                    @foreach ($filtroTalle as $producto)
+                                        <li>
+                                            <a 
+                                                
+                                                class="dropdown-item" href="{{route('producto.talle',[$producto->talle])}}"
+                                            >
+                                                {{$producto->talle}}
+                                            </a>
+                                        </li>
+                                    @endforeach
                                     </ul>
                                     
                                    

@@ -19,6 +19,17 @@ class ProductoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function filtrosTalle()
+    {
+        $filtroTalle = DB::table('productos')
+            ->select('talle')
+            ->orderBy('talle', 'asc')
+            ->distinct()->get();
+
+        return $filtroTalle;
+    }
+
     public function index()
     {
         $productos = Producto::paginate();
@@ -32,35 +43,34 @@ class ProductoController extends Controller
     {
         $texto = trim($request->get('buscar'));
 
-        $talles = DB::table('productos')
-            ->select('talle')
-            ->orderBy('talle','asc')
-            ->distinct()->get();
-
-        
         //Select * From productos
-        $productos = DB::table('productos')
-        ->select('*')
-        ->where('tipo', 'LIKE', '%' . $texto . '%')
-        ->orWhere('marca', 'LIKE', '%' . $texto . '%')
-        ->orderBy('tipo', 'asc')
-        ->paginate(10);
+        $productos = DB::table('productos')->select('*')
+            ->where('tipo', 'LIKE', '%' . $texto . '%')
+            ->orWhere('marca', 'LIKE', '%' . $texto . '%')
+            ->orderBy('tipo', 'asc')
+            ->paginate(10);
 
-        return view('producto.catalogo', compact('productos', 'texto'))
-            ->with('i', (request()->input('page', 1) - 1) * $productos->perPage())
-            ->with(compact('talles'));
+        return view('producto.catalogo', compact('productos', 'texto'));
+                
     }
 
-    // View encargada de los talles
-    // public function productosVariables($talle)
-    // {
-    //     $talles = DB::table('productos')->select('talle')->distinct()->get();
-    //     $productos = DB::table('productos')->select('*')
-    //         ->where('talle', '=', $talle);
+    public function productosVariables($talle)
+    {
+        $filtroTalle = DB::table('productos')
+            ->select('talle')
+            ->orderBy('talle', 'asc')
+            ->distinct()->get();
 
-    //     return view('producto.catalogo', compact('productos'))
-    //         ->with(compact('talles'));
-    // }
+        $productos = DB::table('productos')->select('*')
+            ->where('talle', '=', $talle)
+            ->paginate(10);
+        return view('producto.catalogo', compact('productos'))
+        ->with(compact('filtroTalle'));
+    }
+    
+    
+
+
     
     // View 
     public function productoOrdenarPorPrecio($orden)

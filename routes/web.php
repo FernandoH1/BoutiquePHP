@@ -22,7 +22,7 @@ Route::resource('producto', ProductoController::class)->middleware('auth.admin')
 
 Route::get('/catalogo', [ProductoController::class, 'catalogoView'])->middleware('auth')->name('producto.catalogo');
 // Ruta para mostrar los talles de la DB
-// Route::get('/catalogo/{talle}', [ProductoController::class, 'productosVariables'])->middleware('auth')->name('producto.talle')
+Route::get('/catalogo/{talle}', [ProductoController::class, 'productosVariables'])->middleware('auth')->name('producto.talle');
 //Ruta para mostrar por orden de precio
 Route::get('/precio/{orden}', [ProductoController::class, 'productoOrdenarPorPrecio'])->middleware('auth')->name('producto.precio');
 

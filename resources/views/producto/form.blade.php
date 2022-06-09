@@ -43,7 +43,7 @@
         </div>
         <div class="form-group">
             {{ Form::label('talle') }}
-
+            
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="flexRadioDefault" id="radio1">
                 <label class="form-check-label" for="flexRadioDefault1">
@@ -82,6 +82,7 @@
                             </select>
                         </div>`;
                     }
+                    
                     document.getElementById('radio1').onclick = () => {
                         document.getElementById('talles').innerHTML =`
                         <div class='input-group mb-3' id='indumentaria'>
@@ -97,37 +98,15 @@
                                 <option value='XXXL'>XXXL</option>
                             </select>
                         </div>`;
-                        
                     }
-
             
                 }
             </script>
 
             <div id="talles">
-
-
-
-
-
-            
-
-            
-
+                {{ Form::text('talle', $producto->talle, ['class' => 'form-control' . ($errors->has('talle') ? ' is-invalid' : ''), 'placeholder' => 'Talle']) }}
             </div>
-
             
-
-            
-
-               
-
-            
-            
-
-
-            <!-- {{ Form::text('talle', $producto->talle, ['class' => 'form-control' . ($errors->has('talle') ? ' is-invalid' : ''), 'placeholder' => 'Talle']) }} -->
-            <!-- {!! $errors->first('talle', '<div class="invalid-feedback">:message</div>') !!} -->
         </div>
         <div class="form-group">
             <label>Foto:</label>
@@ -135,8 +114,6 @@
             <img class="img-thumbnail img-fluid" src="{{asset('storage').'/'.$producto->foto}}" alt="" width="150">
             @endif
 
-            <!-- {{ Form::file('foto', $producto->foto, ['class' => 'form-control' . ($errors->has('foto') ? ' is-invalid' : ''), 'placeholder' => 'foto']) }}
-            {!! $errors->first('foto', '<div class="invalid-feedback">:message</div>') !!} -->
 
             <input type="file" class="form-control" name="foto" value="{{$producto->foto}}" id="foto">
         </div>
