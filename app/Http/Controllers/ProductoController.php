@@ -53,20 +53,25 @@ class ProductoController extends Controller
             ->orderBy('color', 'asc')
             ->distinct()->get();
 
+        $filtroMarca = DB::table('productos')
+            ->select('marca')
+            ->orderBy('marca', 'asc')
+            ->distinct()->get();
+
         //Select * From productos
         $productos = DB::table('productos')->select('*')
             ->where('tipo', 'LIKE', '%' . $texto . '%')
             ->orWhere('marca', 'LIKE', '%' . $texto . '%')
             ->orderBy('tipo', 'asc')
-            ->paginate();//GOD
+            ->paginate(); //GOD
 
         return view('producto.catalogo', compact('productos', 'texto'))
             ->with(compact('filtroTalle'))
-            ->with(compact('filtroColor'));
-                
+            ->with(compact('filtroColor'))
+            ->with(compact('filtroMarca'));
     }
 
-    public function productosVariables($talle, $color)
+    public function productosVariables($talle, $color, $marca)
     {
         $filtroTalle = DB::table('productos')
             ->select('talle')
@@ -78,161 +83,59 @@ class ProductoController extends Controller
             ->orderBy('color', 'asc')
             ->distinct()->get();
 
-            
-            var_dump($talle);
-
+        $filtroMarca = DB::table('productos')
+            ->select('marca')
+            ->orderBy('marca', 'asc')
+            ->distinct()->get();
 
 
         $productos = DB::table('productos')->select('*')
             ->where('talle', '=', $talle)
             ->orWhere('color', '=', $color)
+            ->orWhere('marca', '=', $marca)
             ->paginate();
 
         return view('producto.catalogo', compact('productos'))
             ->with(compact('filtroTalle'))
-            ->with(compact('filtroColor'));
+            ->with(compact('filtroColor'))
+            ->with(compact('filtroMarca'));
     }
-    
-    
 
-
-    
     // View 
     public function productoOrdenarPorPrecio($orden)
     {
-        if($orden == 'mayor'){
+        $filtroTalle = DB::table('productos')
+            ->select('talle')
+            ->orderBy('talle', 'asc')
+            ->distinct()->get();
+
+        $filtroColor = DB::table('productos')
+            ->select('color')
+            ->orderBy('color', 'asc')
+            ->distinct()->get();
+
+        $filtroMarca = DB::table('productos')
+            ->select('marca')
+            ->orderBy('marca', 'asc')
+            ->distinct()->get();
+
+        if ($orden == 'mayor') {
             $productos = DB::table('productos')->select('*')
                 ->orderByDesc('precio')
                 ->paginate(10);
             return view('producto.catalogo', compact('productos'))
-                ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
+                ->with(compact('filtroTalle'))
+                ->with(compact('filtroColor'))
+                ->with(compact('filtroMarca'));
         }
 
         $productos = DB::table('productos')->select('*')
             ->orderBy('precio')
             ->paginate(10);
         return view('producto.catalogo', compact('productos'))
-            ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
-    }
-
-    public function productosMayor(Request $request)
-    {
-        $texto = trim($request->get('buscar'));
-        $productos = DB::table('productos')->select('*')
-            ->orderByDesc('precio')
-            ->paginate(10);
-        return view('producto.catalogo', compact('productos', 'texto'))
-            ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
-    }
-
-    public function productosMenor(Request $request)
-    {
-        $texto = trim($request->get('buscar'));
-        $productos = DB::table('productos')->select('*')
-            ->orderBy('precio')
-            ->paginate(10);
-        return view('producto.catalogo', compact('productos', 'texto'))
-            ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
-    }
-
-    public function productosMarcaNike(Request $request)
-    {
-        $texto = trim($request->get('buscar'));
-        $productos = DB::table('productos')->select('*')
-            ->where('marca', '=', 'Nike')
-            ->paginate(10);
-        return view('producto.catalogo', compact('productos', 'texto'))
-            ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
-    }
-
-    public function productosMarcaAdidas(Request $request)
-    {
-        $texto = trim($request->get('buscar'));
-        $productos = DB::table('productos')->select('*')
-            ->where('marca', '=', 'Adidas')
-            ->paginate(10);
-        return view('producto.catalogo', compact('productos', 'texto'))
-            ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
-    }
-
-    public function productosMarcaMarcel(Request $request)
-    {
-        $texto = trim($request->get('buscar'));
-        $productos = DB::table('productos')->select('*')
-            ->where('marca', '=', 'Marcel')
-            ->paginate(10);
-        return view('producto.catalogo', compact('productos', 'texto'))
-            ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
-    }
-
-    public function productosColorNegro(Request $request)
-    {
-        $texto = trim($request->get('buscar'));
-        $productos = DB::table('productos')->select('*')
-            ->where('color', '=', 'Negro')
-            ->paginate(10);
-        return view('producto.catalogo', compact('productos', 'texto'))
-            ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
-    }
-
-    public function productosColorAzul(Request $request)
-    {
-        $texto = trim($request->get('buscar'));
-        $productos = DB::table('productos')->select('*')
-            ->where('color', '=', 'Azul')
-            ->paginate(10);
-        return view('producto.catalogo', compact('productos', 'texto'))
-            ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
-    }
-
-    public function productosColorMarron(Request $request)
-    {
-        $texto = trim($request->get('buscar'));
-        $productos = DB::table('productos')->select('*')
-            ->where('color', '=', 'Marron')
-            ->paginate(10);
-        return view('producto.catalogo', compact('productos', 'texto'))
-            ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
-    }
-
-    public function productosColorVerde(Request $request)
-    {
-        $texto = trim($request->get('buscar'));
-        $productos = DB::table('productos')->select('*')
-            ->where('color', '=', 'Verde')
-            ->paginate(10);
-        return view('producto.catalogo', compact('productos', 'texto'))
-            ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
-    }
-
-    public function productosColorRojo(Request $request)
-    {
-        $texto = trim($request->get('buscar'));
-        $productos = DB::table('productos')->select('*')
-            ->where('color', '=', 'Rojo')
-            ->paginate(10);
-        return view('producto.catalogo', compact('productos', 'texto'))
-            ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
-    }
-
-    public function productosColorAmarillo(Request $request)
-    {
-        $texto = trim($request->get('buscar'));
-        $productos = DB::table('productos')->select('*')
-            ->where('color', '=', 'Amarillo')
-            ->paginate(10);
-        return view('producto.catalogo', compact('productos', 'texto'))
-            ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
-    }
-
-    public function productosColorBlanco(Request $request)
-    {
-        $texto = trim($request->get('buscar'));
-        $productos = DB::table('productos')->select('*')
-            ->where('color', '=', 'Blanco')
-            ->paginate(10);
-        return view('producto.catalogo', compact('productos', 'texto'))
-            ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
+            ->with(compact('filtroTalle'))
+            ->with(compact('filtroColor'))
+            ->with(compact('filtroMarca'));
     }
 
 
