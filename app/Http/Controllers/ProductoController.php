@@ -43,6 +43,11 @@ class ProductoController extends Controller
     {
         $texto = trim($request->get('buscar'));
 
+        $valueTalle = "-";
+        $valueColor = "-";
+        $valueMarca = "-";
+        $valueOrden = "-";
+
         $filtroTalle = DB::table('productos')
             ->select('talle')
             ->orderBy('talle', 'asc')
@@ -68,11 +73,21 @@ class ProductoController extends Controller
         return view('producto.catalogo', compact('productos', 'texto'))
             ->with(compact('filtroTalle'))
             ->with(compact('filtroColor'))
-            ->with(compact('filtroMarca'));
+            ->with(compact('filtroMarca'))
+            ->with(compact('valueTalle'))
+            ->with(compact('valueColor'))
+            ->with(compact('valueMarca'))
+            ->with(compact('valueOrden'));
     }
 
-    public function productosVariables($talle, $color, $marca)
+    public function productosVariables($talle, $color, $marca, $orden)
     {
+
+        $valueTalle = $talle;
+        $valueColor = $color;
+        $valueMarca = $marca;
+        $valueOrden = $orden;
+
         $filtroTalle = DB::table('productos')
             ->select('talle')
             ->orderBy('talle', 'asc')
@@ -89,53 +104,36 @@ class ProductoController extends Controller
             ->distinct()->get();
 
 
-        $productos = DB::table('productos')->select('*')
-            ->where('talle', '=', $talle)
-            ->orWhere('color', '=', $color)
-            ->orWhere('marca', '=', $marca)
-            ->paginate();
+        $productos = DB::table('productos')->select('*');
+        if($talle !== "-"){
+            $productos = $productos->where('talle', '=', $talle);
 
-        return view('producto.catalogo', compact('productos'))
-            ->with(compact('filtroTalle'))
-            ->with(compact('filtroColor'))
-            ->with(compact('filtroMarca'));
-    }
+        }
+        if($color !== "-"){
+            $productos = $productos->where('color', '=', $color);
 
-    // View 
-    public function productoOrdenarPorPrecio($orden)
-    {
-        $filtroTalle = DB::table('productos')
-            ->select('talle')
-            ->orderBy('talle', 'asc')
-            ->distinct()->get();
+        }
+        if($marca !== "-"){
+            $productos = $productos->where('marca', '=', $marca);
 
-        $filtroColor = DB::table('productos')
-            ->select('color')
-            ->orderBy('color', 'asc')
-            ->distinct()->get();
-
-        $filtroMarca = DB::table('productos')
-            ->select('marca')
-            ->orderBy('marca', 'asc')
-            ->distinct()->get();
-
-        if ($orden == 'mayor') {
-            $productos = DB::table('productos')->select('*')
-                ->orderByDesc('precio')
-                ->paginate(10);
-            return view('producto.catalogo', compact('productos'))
-                ->with(compact('filtroTalle'))
-                ->with(compact('filtroColor'))
-                ->with(compact('filtroMarca'));
+        }
+        if($orden !== "-" && $orden === "mayor"){
+            $productos = $productos->orderByDesc('precio');
+        }
+        if($orden !== "-" && $orden === "menor"){
+            $productos = $productos->orderBy('precio');
         }
 
-        $productos = DB::table('productos')->select('*')
-            ->orderBy('precio')
-            ->paginate(10);
+        $productos = $productos->paginate();
+
         return view('producto.catalogo', compact('productos'))
             ->with(compact('filtroTalle'))
             ->with(compact('filtroColor'))
-            ->with(compact('filtroMarca'));
+            ->with(compact('filtroMarca'))
+            ->with(compact('valueTalle'))
+            ->with(compact('valueColor'))
+            ->with(compact('valueMarca'))
+            ->with(compact('valueOrden'));
     }
 
 

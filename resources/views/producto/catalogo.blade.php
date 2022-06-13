@@ -42,6 +42,36 @@ Producto
                             @endif
                             <div class="btn-group">
                                 <!-- Combobox Talles de la DB -->
+                                <script>
+                                    function  crearUrl(tipo, valor){
+                                        let talle = document.getElementById("valorTalle").value;
+                                        let color = document.getElementById("valorColor").value;
+                                        let marca = document.getElementById("valorMarca").value;
+                                        let orden = document.getElementById("valorMarca").value;
+
+                                        if(tipo == "talle"){
+                                            talle = valor;
+                                        }
+                                        if(tipo == "color"){
+                                            color = valor;
+                                        }
+                                        if(tipo == "marca"){
+                                            marca = valor;
+                                        }
+                                        if(tipo == "orden"){
+                                            orden = valor;
+                                        }
+
+                                        window.location.href = "/php/BoutiquePHP/public/catalogo/"+talle+"/"+color+"/"+marca+"/"+orden;
+                                    } 
+                                </script>
+                                <!-- javascript:funcion(); -->
+
+                                <input id="valorTalle" name="valorTalle" type="hidden" value="{{$valueTalle}}" />
+                                <input id="valorColor" name="valorColor" type="hidden" value="{{$valueColor}}"/>
+                                <input id="valorMarca" name="valorMarca" type="hidden" value="{{$valueMarca}}"/>
+                                <input id="valorOrden" name="valorOrden" type="hidden" value="{{$valueOrden}}"/>
+
                                 <div class="dropdown">
                                     <button class="btn dropdown-toggle m-3" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #f3af6e;">
                                         Talles
@@ -50,7 +80,7 @@ Producto
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                         @foreach ($filtroTalle as $producto)
                                             <li>
-                                                <a class="dropdown-item" href="{{route('producto.talle',[ $producto->talle, '-', '-' ])}}">
+                                                <a class="dropdown-item" href="javascript:crearUrl('talle','{{$producto->talle}}');">
                                                     {{$producto->talle}}
                                                 </a>
                                             </li>
@@ -68,7 +98,7 @@ Producto
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                         @foreach ($filtroColor as $producto)
                                             <li>
-                                                <a class="dropdown-item" href="{{route('producto.talle',['-', $producto->color, '-'])}}">
+                                                <a class="dropdown-item" href="javascript:crearUrl('color','{{$producto->color}}');">
                                                     {{$producto->color}}
                                                 </a>
                                             </li>
@@ -86,7 +116,7 @@ Producto
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                         @foreach ($filtroMarca as $producto)
                                             <li>
-                                                <a class="dropdown-item" href="{{route('producto.talle',['-','-', $producto->marca])}}">
+                                                <a class="dropdown-item" href="javascript:crearUrl('marca','{{$producto->marca}}');">
                                                     {{$producto->marca}}
                                                 </a>
                                             </li>
@@ -101,8 +131,8 @@ Producto
                                         Precio
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                        <li><a class="dropdown-item" href="{{route('producto.precio', ['menor'])}}">Menor Precio</a></li>
-                                        <li><a class="dropdown-item" href="{{route('producto.precio', ['mayor'])}}">Mayor Precio</a></li>
+                                        <li><a class="dropdown-item" href="javascript:crearUrl('orden','menor');">Menor Precio</a></li>
+                                        <li><a class="dropdown-item" href="javascript:crearUrl('orden','mayor');">Mayor Precio</a></li>
                                     </ul>
                                 </div>
                                 <!-- -------------------------- -->
