@@ -22,7 +22,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 
-<body background="../public/img/fondo.jpg" style="background-size:cover" >
+<body class="fondosPantalla" style="background-size:cover" >
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="background: linear-gradient(60deg, #ffde61, #f7ab9f, #ffde61,#f7ab9f, #ffde61)">
             <div class="container">

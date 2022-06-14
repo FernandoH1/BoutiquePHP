@@ -8,7 +8,7 @@ Producto
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-sm-12">
-            <div class="card" style="background: #EBEBEB90">
+            <div class="card" style="background: #8c8c8c90">
                 <div class="card-header">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
 
@@ -47,7 +47,7 @@ Producto
                                         let talle = document.getElementById("valorTalle").value;
                                         let color = document.getElementById("valorColor").value;
                                         let marca = document.getElementById("valorMarca").value;
-                                        let orden = document.getElementById("valorMarca").value;
+                                        let orden = document.getElementById("valorOrden").value;
 
                                         if(tipo == "talle"){
                                             talle = valor;
@@ -62,7 +62,7 @@ Producto
                                             orden = valor;
                                         }
 
-                                        window.location.href = "/php/BoutiquePHP/public/catalogo/"+talle+"/"+color+"/"+marca+"/"+orden;
+                                        window.location.href = "/BoutiquePHP/public/catalogo/"+talle+"/"+color+"/"+marca+"/"+orden;
                                     } 
                                 </script>
                                 <!-- javascript:funcion(); -->
