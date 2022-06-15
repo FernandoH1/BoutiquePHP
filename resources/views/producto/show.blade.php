@@ -61,8 +61,6 @@
                         <img class="img-thumbnail img-fluid" src="{{asset('storage').'/'.$producto->foto}}" alt="" width="150">
                         @endif
                     </div>
-
-
                 </div>
             </div>
         </div>

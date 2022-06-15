@@ -63,6 +63,13 @@
                         @endif
                         @else
                         <li class="nav-item dropdown">
+                        <li class="nav-item" id="carritoCompra">
+                             @if(Auth::user()->role == 'admin')
+                            <input type="hidden">
+                            @else()
+                            <button id="btnCarrito" type="button">0<img src="{{ asset('/img/carrito.png') }}" alt="HSS" height="40px" width="40px"></button>
+                            @endif
+                        </li>
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 @if(Auth::user()->role == 'admin')
                                 <img src="{{ asset('/img/faces/Admin.png') }}" alt="HSS" height="30px" width="30px">
