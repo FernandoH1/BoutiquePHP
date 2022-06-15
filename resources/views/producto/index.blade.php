@@ -32,7 +32,7 @@
 
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-dark">
+                            <table class="table table-secondary">
                                 <thead class="thead">
                                     <tr>
                                         <th>#ID</th>
@@ -43,6 +43,7 @@
 										<th>Marca</th>
 										<th>Color</th>
 										<th>Talle</th>
+                                        <th>Stock</th>
 										<th>Foto</th>
                                         <th></th>
                                     </tr>
@@ -58,6 +59,7 @@
 											<td>{{ $producto->marca }}</td>
 											<td>{{ $producto->color }}</td>
 											<td>{{ $producto->talle }}</td>
+                                            <td>{{ $producto->stock }}</td>
                                             <td>
                                                  <img class="img-thumbnail img-fluid" src="{{asset('storage').'/'.$producto->foto}}" alt="" width="150">
                                             </td>

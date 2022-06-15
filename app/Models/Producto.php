@@ -33,6 +33,7 @@ class Producto extends Model
 		'color' => 'required',
 		'talle' => 'required',
 		'foto',
+    'stock' => 'required',
 		'categoria' => 'required',
     ];
 
@@ -43,7 +44,7 @@ class Producto extends Model
      *
      * @var array
      */
-    protected $fillable = ['tipo','genero','precio','marca','color','talle','foto','categoria'];
+    protected $fillable = ['tipo','genero','precio','marca','color','talle','foto','stock','categoria'];
 
 
 

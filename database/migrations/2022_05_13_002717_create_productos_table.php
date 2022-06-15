@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('color');
             $table->string('talle');
             $table->string('foto');
+            $table->integer('stock');
             $table->string('categoria');
             $table->timestamps();
         });

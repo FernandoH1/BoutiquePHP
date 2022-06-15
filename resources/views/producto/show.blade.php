@@ -20,7 +20,7 @@
                     </div>
                 </div>
 
-                <div class="card-body text-white bg-dark mb-3">
+                <div class="card-body text-white bg-secondary mb-3">
 
                     <div class="form-group">
                         <strong>Categoria:</strong>
@@ -49,6 +49,10 @@
                     <div class="form-group">
                         <strong>Talle:</strong>
                         {{ $producto->talle }}
+                    </div>
+                    <div class="form-group">
+                        <strong>Stock:</strong>
+                        {{ $producto->stock }}
                     </div>
                     <div class="form-group">
                         <strong>Foto:</strong>

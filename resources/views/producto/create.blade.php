@@ -20,7 +20,7 @@ Crear Producto
                         </div>
                     </div>
                 </div>
-                    <div class="card-body">
+                    <div class="card-body" style="background-color: #E2E3E5;">
                         <form method="POST" action="{{ route('producto.store') }}" role="form" enctype="multipart/form-data">
                             @csrf
 

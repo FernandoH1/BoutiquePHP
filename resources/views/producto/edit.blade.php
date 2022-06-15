@@ -21,7 +21,7 @@ Crear Producto
                     </div>
                 </div>
 
-                <div class="card-body">
+                <div class="card-body" style="background-color: #E2E3E5;">
                     <form method="POST" action="{{ route('producto.update', $producto->id) }}" role="form" enctype="multipart/form-data">
                         {{ method_field('PATCH') }}
                         @csrf
