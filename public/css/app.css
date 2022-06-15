@@ -4585,15 +4585,15 @@ textarea.form-control-lg {
   background-image: url(https://images.squarespace-cdn.com/content/v1/5d12c8c14012810001b264bf/1582668925619-Y25LB2DMVHEVYWL32N5B/Will_Boutique_3118_Web.jpg);
   height: 100%;
 }
-#counter{
-  margin-top: 7px;
-  margin-right: 3px;
-}
 
 #btnCarrito{
   background: rgba(0, 0, 0, 0);
   border-radius:10px;
   outline:none;
+}
+
+#btnCarrito:hover{
+  background: rgba(0, 255, 0, 0.5);
 }
 #carritoCompra{
   margin-right: 55%;

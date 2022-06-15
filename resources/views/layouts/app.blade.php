@@ -63,6 +63,7 @@
                         @endif
                         @else
                         <li class="nav-item dropdown">
+                            <!-- //TODO: IMPLEMENTAR EL CONTEO DE PRODUCTOS CARRITO -->
                         <li class="nav-item" id="carritoCompra">
                              @if(Auth::user()->role == 'admin')
                             <input type="hidden">
