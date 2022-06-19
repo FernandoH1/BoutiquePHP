@@ -19,7 +19,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::resource('producto', ProductoController::class)->middleware('auth.admin');
 
-Route::get('/carrito', [CartController::class, 'index'])->middleware('auth')->name('carrito.cart');
+// Route::get('/carrito', [CartController::class, 'index'])->middleware('auth')->name('carrito.cart');
+
+Route::get('/cart', [CartController::class, 'getCart'])->middleware('auth')->name('cart');
+
+
 Route::get('/catalogo', [ProductoController::class, 'catalogoView'])->middleware('auth')->name('producto.catalogo');
 // Ruta para mostrar los talles de la DB
 Route::get('/catalogo/{talle}/{color}/{marca}/{orden}', [ProductoController::class, 'productosVariables'])->middleware('auth')->name('producto.talle');
