@@ -12,7 +12,7 @@
                 <div class="card-header">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
                         <div class="float-left">
-                            <span class="card-title">Productos</span>
+                            <span class="card-title">Detalle del Prodcuto</span>
                         </div>
                         <div class="float-right">
                             <a class="btn btn-primary" href="{{ route('producto.index') }}"> Volver</a>
@@ -26,7 +26,7 @@
                         <div class="col-4">
                             <div class="form-group">
                                 @if(isset($producto->foto))
-                                <img class="img-thumbnail img-fluid" src="{{asset('storage').'/'.$producto->foto}}" alt="" width="750">
+                                <img class="img-thumbnail img-fluid" src="{{asset('storage').'/'.$producto->foto}}" alt="" width="650">
                                 @endif
                             </div>
                         </div>
@@ -63,14 +63,14 @@
                                 <strong>Stock:</strong>
                                 {{ $producto->stock }}
                             </div>
-                            <div>
-                                <button class="btn btn-primary cartButton" onclick="javascript:aumentar_carrito()"> + </button>
-                                <h4 id="cantidad_items"> 0 </h4>
+                            <br>
+                            <div class="cantidadPr">
                                 <button class="btn btn-primary cartButton" onclick="javascript:decrementar_carrito()"> - </button>
+                                <p id="cantidad_items">  0  </p>
+                                <button class="btn btn-primary cartButton" onclick="javascript:aumentar_carrito()"> + </button>
                             </div>
                         </div>
                     </div>
-
 
                     <script>
                         var valorCarrito = 0;
@@ -92,14 +92,6 @@
                             updateDisplay(valorCarrito - 1);
                         }
                     </script>
-
-
-                    
-                    
-
-
-                    
-
 
                 </div>
             </div>
