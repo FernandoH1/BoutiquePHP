@@ -4607,6 +4607,14 @@ textarea.form-control-lg {
   margin-right: 55%;
 }
 
+.añadirC{
+  width: 300px;
+  height: 127px;
+  font-size: 30px;
+  margin-top: 100%;
+  margin-left: 50%;
+}
+
 .form-group{
    font-size: 30px; 
 }
@@ -4616,21 +4624,28 @@ textarea.form-control-lg {
 }
 
 .cantidadPr{
-  display: inline-flex;
-  height: 60px;
+  display: flex; 
   margin-inline: auto;
+}
+
+.cantidadPr > button{
+  width: 15%;
+  font-size: 3em;
+  border-radius: 10%;
+  border: solid 1px white;
 }
 
 #cantidad_items{
   background-color: #000;
-  font-size: 1.5em;
+  font-size: 2.5em;
   text-align:center;
   margin-left: 10px;
   margin-right: 10px;
-  padding-top: 6px;
-  border: solid 1px black;
+  padding-top: 15px;
+  border: solid 1px white;
   border-radius: 5px;
-  width: 50px;
+  width: 40%;
+  height: 85px;
 }
 
 .cartButton{

@@ -30,7 +30,7 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="col columna">
+                        <div class="col-4">
                             <div class="form-group">
                                 <strong>Categoria:</strong>
                                 {{ $producto->categoria }}
@@ -70,6 +70,9 @@
                                 <button class="btn btn-primary cartButton" onclick="javascript:aumentar_carrito()"> + </button>
                             </div>
                         </div>
+                        <div class="col-4">
+                                <button class="btn btn-primary añadirC">Añadir al <img src="{{ asset('/img/cart.png') }}" width="55px" alt="..."></button>
+                            </div>  
                     </div>
 
                     <script>
