@@ -14,7 +14,7 @@ Crear Producto
             <div class="card card-default">
                 <div class="card-header">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <span class="card-title">Crear Producto</span>
+                        <span id="card_title">Crear Producto</span>
                         <div class="float-right">
                             <a class="btn btn-primary" href="{{ route('producto.index') }}"> Volver</a>
                         </div>

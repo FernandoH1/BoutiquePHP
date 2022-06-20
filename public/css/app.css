@@ -4574,14 +4574,14 @@ textarea.form-control-lg {
 }
 
 .carousel-inner{
-  width: 50%;
+  width: 20%;
   height: 50%;
 }
 
 .carrucel{
-  width: 100%;
+  width: 70%;
   height: 350px;
-  margin:auto;
+  margin-left: 15%;
 }
 
 #card_title{
@@ -4676,7 +4676,6 @@ border: solid 1px black;
   padding: 12px;
   border-radius: 20px;
   font-weight: bold;
-
 }
 
 .cards{

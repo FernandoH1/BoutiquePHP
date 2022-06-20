@@ -9,15 +9,21 @@ Route::get('/', function () {
     return view('home');
 })->middleware('auth');
 
+// Route::get('/', function () {
+//     return view('home');
+// })->middleware('auth.admin');
+
 Route::get('/catalogo', function () {
     return view('producto.catalogo');
 })->middleware('auth');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home/admin', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth.admin');
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'indexAdmin'])->name('home.admin')->middleware('auth.admin');
+Route::get('/home/user', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
+
+// Route::get('/', [App\Http\Controllers\HomeController::class, 'indexAdmin'])->name('home.admin')->middleware('auth.admin');
 
 Route::resource('producto', ProductoController::class)->middleware('auth.admin');
 
