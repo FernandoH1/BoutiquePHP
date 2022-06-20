@@ -40,6 +40,28 @@ Producto
                                     <strong>{{ $errors->first('buscar') }}</strong>
                                 </div>
                             @endif
+
+                             <!-- javascript:funcion(); -->
+
+                            <input id="valorTalle" name="valorTalle" type="hidden" value="{{$valueTalle}}" />
+                            <input id="valorColor" name="valorColor" type="hidden" value="{{$valueColor}}"/>
+                            <input id="valorMarca" name="valorMarca" type="hidden" value="{{$valueMarca}}"/>
+                            <input id="valorOrden" name="valorOrden" type="hidden" value="{{$valueOrden}}"/>
+
+                            @if($valueTalle != "-" || $valueColor != "-" ||  $valueMarca != "-" || $valueOrden != "-")
+                            <div class="marcadores">
+                                <!-- SELECTED COMBO BOX -->
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="#">{{$valueTalle}}</a></li>
+                                        <li class="breadcrumb-item"><a href="#">{{$valueColor}}</a></li>
+                                        <li class="breadcrumb-item"><a href="#">{{$valueMarca}}</a></li>
+                                        <li class="breadcrumb-item"><a href="#">{{$valueOrden}}</a></li>
+                                    </ol>
+                                </nav>
+                            </div>
+                            @endif
+
                             <div class="btn-group">
                                 <!-- Combobox Talles de la DB -->
                                 <script>
@@ -65,17 +87,6 @@ Producto
                                         window.location.href = "/BoutiquePHP/public/catalogo/"+talle+"/"+color+"/"+marca+"/"+orden;
                                     } 
                                 </script>
-                                   
-
-                               
-
-                                <!-- javascript:funcion(); -->
-
-                                <input id="valorTalle" name="valorTalle" type="hidden" value="{{$valueTalle}}" />
-                                <input id="valorColor" name="valorColor" type="hidden" value="{{$valueColor}}"/>
-                                <input id="valorMarca" name="valorMarca" type="hidden" value="{{$valueMarca}}"/>
-                                <input id="valorOrden" name="valorOrden" type="hidden" value="{{$valueOrden}}"/>
-
                                 <div class="dropdown">
                                     <button class="btn dropdown-toggle m-3" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #f3af6e;">
                                         Talles

@@ -4667,15 +4667,8 @@ border: solid 1px black;
   font-size: 2em;
 }
 
-.fieldset{
-  margin-bottom: 12px;
-}
-
-.legend{
-  background-color: rgb(23, 124, 213);
-  padding: 12px;
-  border-radius: 20px;
-  font-weight: bold;
+.marcadores{
+  margin-left: 20px;
 }
 
 .cards{
