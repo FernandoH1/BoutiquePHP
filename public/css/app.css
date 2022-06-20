@@ -4617,6 +4617,7 @@ textarea.form-control-lg {
 
 .form-group{
    font-size: 30px; 
+   color: grey;
 }
 .form-group > strong{
   font-size: 40px;
@@ -4632,7 +4633,13 @@ textarea.form-control-lg {
   width: 15%;
   font-size: 3em;
   border-radius: 10%;
-  border: solid 1px white;
+  border: solid 2px black;
+}
+
+#detallesP{
+background-color: #f8f8ff;
+border-radius: 5px;
+border: solid 1px black;
 }
 
 #cantidad_items{
@@ -4658,6 +4665,18 @@ textarea.form-control-lg {
   display: inline-block;
   padding: 15px;
   font-size: 2em;
+}
+
+.fieldset{
+  margin-bottom: 12px;
+}
+
+.legend{
+  background-color: rgb(23, 124, 213);
+  padding: 12px;
+  border-radius: 20px;
+  font-weight: bold;
+
 }
 
 .cards{

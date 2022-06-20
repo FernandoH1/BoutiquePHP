@@ -8,11 +8,11 @@
 <section class="content container-fluid">
     <div class="row">
         <div class="col-md-12">
-            <div class="card">
+            <div class="card" style="background: #8c8c8c90">
                 <div class="card-header">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
                         <div class="float-left">
-                            <span class="card-title">Detalle del Prodcuto</span>
+                            <span id="card_title"><b>Detalle del Prodcuto</b></span>
                         </div>
                         <div class="float-right">
                             <a class="btn btn-primary" href="{{ route('producto.index') }}"> Volver</a>
@@ -20,7 +20,7 @@
                     </div>
                 </div>
 
-                <div class="card-body text-white bg-secondary mb-3">
+                <div class="card-body text-white mb-3">
 
                     <div class="row">
                         <div class="col-4">
@@ -30,7 +30,7 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="col-4">
+                        <div class="col-4" id="detallesP">
                             <div class="form-group">
                                 <strong>Categoria:</strong>
                                 {{ $producto->categoria }}

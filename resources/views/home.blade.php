@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container-fluid">
-<center><h1><strong>Bienvenidos!!</strong></h1></center>
+<center><h1><strong>¡¡ Bienvenido, {{Auth::user()->name}} !!</strong></h1></center>
 <br>
 <br>
     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">

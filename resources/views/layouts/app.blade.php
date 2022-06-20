@@ -62,8 +62,8 @@
                         </li>
                         @endif
                         @else
-                        <li class="nav-item dropdown">
-                            <!-- //TODO: IMPLEMENTAR EL CONTEO DE PRODUCTOS CARRITO -->
+                        
+                        <!-- //TODO: IMPLEMENTAR EL CONTEO DE PRODUCTOS CARRITO -->
                         <li class="nav-item" id="carritoCompra">
                              @if(Auth::user()->role == 'admin')
                             <input type="hidden">
@@ -71,14 +71,17 @@
                             <button id="btnCarrito" onclick="window.location.href='http://localhost/BoutiquePHP/public/cart'" type="button">0<img src="{{ asset('/img/carrito.png') }}" alt="HSS" height="40px" width="40px"></button>
                             @endif
                         </li>
+
+                        <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 @if(Auth::user()->role == 'admin')
-                                <img src="{{ asset('/img/faces/Admin.png') }}" alt="HSS" height="30px" width="30px">
+                                <img src="{{ asset('/img/faces/Admin.png') }}" alt="HSS" height="45px" width="45px">
                                 @else()
-                                <img src="{{ asset('/img/faces/user.png') }}" alt="HSS" height="30px" width="30px">
+                                <img src="{{ asset('/img/faces/user.png') }}" alt="HSS" height="45px" width="45px">
                                 @endif
-                                <b>{{ Auth::user()->name }}</b>
+                                <b style="font-size: 18px;">{{ Auth::user()->name }}</b>
                             </a>
+                    
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
