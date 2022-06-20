@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\Http\Models\Order , App\Http\Models\OrderItem;
+use App\Models\Producto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Auth;
 
 class CartController extends Controller
@@ -25,6 +27,12 @@ class CartController extends Controller
        // return count(collect($order->getItems));
         $data = ['order' => $order, 'items' => $items];
         return view('carrito.cart', $data);
+    }
+    public function show($id)
+    {
+        $producto = Producto::find($id);
+
+        return view('carrito.showProducto', compact('producto'));
     }
 
     public function getUserOrder(){

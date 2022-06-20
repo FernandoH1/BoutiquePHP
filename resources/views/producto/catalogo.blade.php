@@ -65,6 +65,10 @@ Producto
                                         window.location.href = "/BoutiquePHP/public/catalogo/"+talle+"/"+color+"/"+marca+"/"+orden;
                                     } 
                                 </script>
+                                   
+
+                               
+
                                 <!-- javascript:funcion(); -->
 
                                 <input id="valorTalle" name="valorTalle" type="hidden" value="{{$valueTalle}}" />
@@ -162,6 +166,11 @@ Producto
                                                     <p class="card-text">Talle: {{$producto->talle}} </p>
                                                     <p class="card-text">Categoria: {{$producto->categoria}} </p>
                                                     <p class="card-text">Precio: ${{$producto->precio}} </p>
+                                                    <div class="input-group">
+                                                        <form action="{{ route('cart.show', $producto->id) }}" method="POST">
+                                                            <a class="btn btn-sm btn-success " href="{{ route('cart.show', $producto->id) }}"><i class="fa fa-fw fa-eye"></i> Ver detalles</a>
+                                                        </form>
+                                                    </div>
                                                 </fieldset>
                                             </div>
                                         </div>

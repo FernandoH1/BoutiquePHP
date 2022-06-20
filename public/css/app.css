@@ -4607,6 +4607,11 @@ textarea.form-control-lg {
   margin-right: 55%;
 }
 
+.col columna > div{
+  font-size: 20px;
+  background-color: red;
+}
+
 .no_items > p{
   margin-left: auto;
   display: inline-block;
