@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Models\Order , App\Http\Models\OrderItem;
+use App\Http\Models\Order; 
+use App\Models\OrderItem;
 use App\Models\Producto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -48,5 +49,31 @@ class CartController extends Controller
         return $order;
     }
 
+    public function postCartAdd(Request $request){
+            $order = $this->getUserOrder();
+            $user_id = $request->get('idUser');
+            $quantity = $request->get('quantity');
+            $product = $request->get('idProduct');
+            $name = $request->get('ProductName');
+            $datos = request()->except('_token');
+            $datos['total'] = $request->quantity*$request->price;
+            print_r ($datos); 
+        
+        if($request->input('quantity') < 1){
+            return back()->with('message', 'Cantidad no ingresadad.')->with('typealert','danger');
+        }else{
+            $oitem = new OrderItem();
+            $oitem->user_id = $user_id;
+            $oitem->order_id = null;
+            $oitem->product_id = $product;
+            $oitem->label_item = $name;
+            $oitem->quantity = $quantity;
+            $oitem->total = $datos['total'] = $request->quantity*$request->price;
+            
+            if($oitem->save()){
+                return back()->with('message', 'Order Item Agregado.')->with('typealert','success');
+            }
+        }
+    }
 
 }

@@ -12,13 +12,42 @@
                 <div class="card-header">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
                         <div class="float-left">
-                            <span id="card_title"><b>Detalle del Prodcuto</b></span>
+                            <span id="card_title"><b>Detalle del Producto</b></span>
                         </div>
                         <div class="float-right">
                             <a class="btn btn-primary" href="{{ route('producto.catalogo') }}"> Volver</a>
                         </div>
                     </div>
                 </div>
+                <script>
+                        var valorCarrito = 0;
+                        function updateDisplay(valor){
+                            valorCarrito = valor;
+                            if(valorCarrito >= 0 && valorCarrito <= {{$producto->stock}}){
+                                document.getElementById("cantidad_items").innerHTML = valorCarrito;
+                            } else {
+                                alert("No hay productos en el carrito");
+                            }
+                        }
+                                                
+                        function aumentar_carrito(){
+                            updateDisplay(valorCarrito + 1);
+                            
+                        }
+
+                        function decrementar_carrito(){
+                            updateDisplay(valorCarrito - 1);
+                        }
+
+                        function contador(){
+                            document.getElementById("contadorC").innerHTML = valorCarrito;
+                            document.getElementById("quantity").value = valorCarrito;
+                            console.log("XD "+document.getElementById("cantidad_items").value);
+                            console.log("CONTADOR: "+valorCarrito);
+                            return valorCarrito;
+                        }
+
+                    </script>
 
                 <div class="card-body text-white mb-3">
 
@@ -70,32 +99,20 @@
                                 <button class="btn btn-primary cartButton" onclick="javascript:aumentar_carrito()"> + </button>
                             </div>
                         </div>
+
                         <div class="col-4">
-                                <button class="btn btn-primary añadirC">Añadir al <img src="{{ asset('/img/cart.png') }}" width="55px" alt="..."></button>
-                            </div>  
+                            <form method="POST" action="{{ route('cart.add') }}">
+                                <input type="hidden" name="idUser" value="{{ Auth::user()->id }}">
+                                <input type="hidden" name="idProduct" value="{{ $producto->id }}">
+                                <input type="hidden" name="ProductName" value="{{ $producto->tipo }}">
+                                <input type="hidden" id="quantity" name="quantity" value="">
+                                <input type="hidden" name="price" value="{{ $producto->precio }}">
+                                <input type="hidden" id="total" name="total" value="">
+                                @csrf
+                                <button type="submit" class="btn btn-primary añadirC" onclick="contador()">Añadir al <img src="{{ asset('/img/cart.png') }}" width="55px" alt="..."></button>
+                            </form>
+                        </div>  
                     </div>
-
-                    <script>
-                        var valorCarrito = 0;
-                        function updateDisplay(valor){
-                            valorCarrito = valor;
-                            if(valorCarrito >= 0 && valorCarrito <= {{$producto->stock}}){
-                                document.getElementById("cantidad_items").innerHTML = valorCarrito;
-                            } else {
-                                alert("No hay productos en el carrito");
-                            }
-                        }
-                                                
-                        function aumentar_carrito(){
-                            updateDisplay(valorCarrito + 1);
-                            
-                        }
-
-                        function decrementar_carrito(){
-                            updateDisplay(valorCarrito - 1);
-                        }
-                    </script>
-
                 </div>
             </div>
         </div>

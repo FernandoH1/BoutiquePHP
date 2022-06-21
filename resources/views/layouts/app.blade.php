@@ -68,7 +68,12 @@
                              @if(Auth::user()->role == 'admin')
                             <input type="hidden">
                             @else()
-                            <button id="btnCarrito" onclick="window.location.href='http://localhost/BoutiquePHP/public/cart'" type="button">0<img src="{{ asset('/img/carrito.png') }}" alt="HSS" height="40px" width="40px"></button>
+                            <button id="btnCarrito" onclick="window.location.href='http://localhost/BoutiquePHP/public/cart'" type="button">
+                                <div>
+                                    <p id="contadorC">0</p>
+                                    <img src="{{ asset('/img/carrito.png') }}" alt="HSS" height="40px" width="40px">
+                                </div>
+                            </button>
                             @endif
                         </li>
 

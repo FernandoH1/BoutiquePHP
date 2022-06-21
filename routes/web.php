@@ -19,6 +19,8 @@ Route::get('/catalogo', function () {
 
 Auth::routes();
 
+Route::post('/cart/add', [CartController::class, 'postCartAdd'])->middleware('auth')->name('cart.add');
+
 Route::get('/home/admin', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth.admin');
 
 Route::get('/home/user', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
