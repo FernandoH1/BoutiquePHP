@@ -244,4 +244,13 @@ class ProductoController extends Controller
         return redirect()->route('producto.index')
             ->with('success', 'El Producto Se Elimino Correctamente!!');
     }
+
+    public function contadorCarrito($id){
+        $contador = DB::table('orders_items')
+        ->select()
+        ->where('user_id' ,'=', $id)
+        ->whereNull('order_id')
+        ->count('user_id');
+        return response()->json(['cantidad'=> $contador]);
+    }
 }

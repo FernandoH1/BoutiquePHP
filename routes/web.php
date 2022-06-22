@@ -34,6 +34,7 @@ Route::resource('producto', ProductoController::class)->middleware('auth.admin')
 Route::get('/cart', [CartController::class, 'getCart'])->middleware('auth')->name('cart');
 Route::get('/cart/{id}', [CartController::class, 'show'])->middleware('auth')->name('cart.show');
 
+Route::get('/count/{id}', [ProductoController::class, 'contadorCarrito'])->middleware('auth')->name('producto.count');
 
 Route::get('/catalogo', [ProductoController::class, 'catalogoView'])->middleware('auth')->name('producto.catalogo');
 // Ruta para mostrar los talles de la DB

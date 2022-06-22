@@ -63,6 +63,23 @@
                         @endif
                         @else
                         
+                        <script src="http://code.jquery.com/jquery-3.3.1.min.js"
+                            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+                            crossorigin="anonymous">
+                        </script>
+                        <?php $id = Auth::user()->id ?>
+                       <script>
+                                jQuery(document).ready(function(){
+                                    var url1 = "http://localhost/BoutiquePHP/public/count/"
+                                    url1+='<?=$id?>'
+                                    jQuery.ajax({
+                                        url:  url1,
+                                        method: 'get',
+                                        success: function(result){
+                                            document.getElementById('contadorC').innerHTML = result.cantidad;
+                                        }});
+                                    });
+                        </script>
                         <!-- //TODO: IMPLEMENTAR EL CONTEO DE PRODUCTOS CARRITO -->
                         <li class="nav-item" id="carritoCompra">
                              @if(Auth::user()->role == 'admin')
