@@ -24,11 +24,24 @@ class CartController extends Controller
     {
         $order = $this->getUserOrder();
         $items = $order->getItems;
+
+        $productos = OrderItem::paginate();
+
        // $order_id = $this->getUserOrder()->id;
        // return count(collect($order->getItems));
         $data = ['order' => $order, 'items' => $items];
-        return view('carrito.cart', $data);
+        return view('carrito.cart', $data)
+        ->with(compact('productos'))->with('i', (request()->input('page', 1) - 1) * $productos->perPage());;
     }
+
+    public function destroy($id)
+    {
+        $producto = OrderItem::find($id)->delete();
+        return redirect()->route('cart')
+            ->with('success', 'Order Item se elimino');
+    }
+
+
     public function show($id)
     {
         $producto = Producto::find($id);

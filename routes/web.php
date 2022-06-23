@@ -32,6 +32,7 @@ Route::resource('producto', ProductoController::class)->middleware('auth.admin')
 // Route::get('/carrito', [CartController::class, 'index'])->middleware('auth')->name('carrito.cart');
 
 Route::get('/cart', [CartController::class, 'getCart'])->middleware('auth')->name('cart');
+Route::get('/cart/delete/{id}', [CartController::class, 'destroy'])->middleware('auth')->name('cart.destroy');
 Route::get('/cart/{id}', [CartController::class, 'show'])->middleware('auth')->name('cart.show');
 
 Route::get('/count/{id}', [ProductoController::class, 'contadorCarrito'])->middleware('auth')->name('producto.count');
