@@ -16,11 +16,11 @@ return new class extends Migration
         Schema::create('orders_items', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->integer('order_id');
+            $table->integer('order_id')->nullable();
             $table->integer('product_id');
             $table->text('label_item')->nullable();
             $table->integer('quantity')->default(1);
-            $table->decimal('price',11,2);
+            $table->decimal('price',11,2)->nullable();
             $table->decimal('total',11,2);
             $table->timestamps();
         });

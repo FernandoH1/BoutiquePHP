@@ -68,6 +68,7 @@ class CartController extends Controller
             $oitem->product_id = $product;
             $oitem->label_item = $name;
             $oitem->quantity = $quantity;
+            $oitem->price = $request->price;
             $oitem->total = $datos['total'] = $request->quantity*$request->price;
             
             if($oitem->save()){
