@@ -250,7 +250,11 @@ class ProductoController extends Controller
         ->select()
         ->where('user_id' ,'=', $id)
         ->whereNull('order_id')
-        ->count('user_id');
+        ->sum('quantity');
+
+
+
+        
         return response()->json(['cantidad'=> $contador]);
     }
 }
