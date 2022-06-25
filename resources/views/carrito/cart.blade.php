@@ -30,6 +30,21 @@ Producto
                 <div class="cart">
                     <div class="contentedor">
                         <div class="row">
+
+
+                            <style>
+
+                                .my-custom-scrollbar {
+                                position: relative;
+                                height: 400px;
+                                overflow: auto;
+                                }
+                                .table-wrapper-scroll-y {
+                                display: block;
+                                }
+
+                            </style>
+
                             <div class="col-8">
                                 @if(count(collect($items)) == "0")
                                     <div class="no_items">
@@ -45,9 +60,9 @@ Producto
                                                 </button>
                                             </p>  
                                         @else
-                                            <div class="card-body">
+                                            <div class="card-body table-wrapper-scroll-y my-custom-scrollbar">
                                                 <div class="table-responsive">
-                                                    <table class="table table-secondary">
+                                                    <table class="table table-secondary table-bordered">
                                                         <thead class="thead">
                                                             <tr>
                                                                 <th>#ID Usuario</th>
@@ -87,7 +102,7 @@ Producto
                                 @else
                                 @endif
                         </div>
-                        <div class="col-4" style="background-color: whitesmoke">
+                        <div class="col-4 " style="background-color: whitesmoke">
                             
                             <div class="form-group">
                                 {{ Form::label('Comentario') }}
