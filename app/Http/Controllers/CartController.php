@@ -97,4 +97,22 @@ class CartController extends Controller
             }
         }
     }
+    // public function crearOrden(Request $productos)
+    // {
+    //     $order = $this->getUserOrder();
+        
+
+    //     for ($i=0; $i < $productos->length; $i++) { 
+    //         DB::update('update orders_item set stock = ? where id = ?', [$totalRestante, $oitem->product_id]);
+            
+    //     }
+
+
+    // }
+
+
+
+
+
+
 }
