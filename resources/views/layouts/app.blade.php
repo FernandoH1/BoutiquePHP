@@ -67,7 +67,9 @@
                             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
                             crossorigin="anonymous">
                         </script>
-                        <?php $id = Auth::user()->id ?>
+                        <?php 
+                            $id = Auth::user()->id 
+                        ?>
                        <script>
                                 jQuery(document).ready(function(){
                                     var url1 = "http://localhost/BoutiquePHP/public/count/"

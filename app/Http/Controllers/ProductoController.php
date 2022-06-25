@@ -251,9 +251,6 @@ class ProductoController extends Controller
         ->where('user_id' ,'=', $id)
         ->whereNull('order_id')
         ->sum('quantity');
-
-
-
         
         return response()->json(['cantidad'=> $contador]);
     }

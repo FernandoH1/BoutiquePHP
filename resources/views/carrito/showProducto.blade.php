@@ -26,13 +26,13 @@
                             if(valorCarrito >= 0 && valorCarrito <= {{$producto->stock}}){
                                 document.getElementById("cantidad_items").innerHTML = valorCarrito;
                             } else {
+                                valorCarrito--;
                                 alert("No hay productos en el carrito");
                             }
                         }
                                                 
                         function aumentar_carrito(){
                             updateDisplay(valorCarrito + 1);
-                            
                         }
 
                         function decrementar_carrito(){
