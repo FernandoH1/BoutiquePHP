@@ -11,13 +11,13 @@ Producto
             <div class="card" style="background: #8c8c8c90">
                 <div class="card-header">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
-
                         <span id="card_title">
                         <img src="{{ asset('/img/cartA.png') }}" width="50px" alt="...">
                             <b> {{ __('Mi Carrito') }} </b>
                         </span>
                     </div>
                 </div>
+
                 @if ($message = Session::get('success'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -26,109 +26,93 @@ Producto
                 @endif
 
                 <div class="card-body">
-
-                <div class="cart">
-                    <div class="contentedor">
-                        <div class="row">
-
-
-                            <style>
-
-                                .my-custom-scrollbar {
-                                position: relative;
-                                height: 400px;
-                                overflow: auto;
-                                }
-                                .table-wrapper-scroll-y {
-                                display: block;
-                                }
-
-                            </style>
-
-                            <div class="col-8">
-                                @if(count(collect($items)) == "0")
+                    <div class="cart">
+                        <div class="contentedor">
+                            <div class="row">
+                            @if($productos->isEmpty())
+                                <div class="col-8">
                                     <div class="no_items">
-                                        @if(count(collect($productos)) == "0")
-                                            <p><img src="{{ asset('/img/cartV.png') }}" width="150px" alt="..."></p>
-                                            <p>
-                                                Hola, <strong>{{ Auth::user()->name }}</strong> tu carrito de compras esta Vacio!!
-                                                <br>
-                                                <button 
-                                                    class="btn btn-dark btn-lg carritobtn" onclick="window.location.href='http://localhost/BoutiquePHP/public/catalogo'">
-                                                    Agregar al 
-                                                    <img src="{{ asset('/img/cart.png') }}" width="30px" alt="...">
-                                                </button>
-                                            </p>  
-                                        @else
-                                            <div class="card-body table-wrapper-scroll-y my-custom-scrollbar">
-                                                <div class="table-responsive">
-                                                    <table class="table table-secondary table-bordered">
-                                                        <thead class="thead">
+                                        <p><img src="{{ asset('/img/cartV.png') }}" width="150px" alt="..."></p>
+                                        <p>
+                                            Hola, <strong>{{ Auth::user()->name }}</strong> tu carrito de compras esta Vacio!!
+                                            <br>
+                                            <button 
+                                                class="btn btn-dark btn-lg carritobtn" onclick="window.location.href='http://localhost/BoutiquePHP/public/catalogo'">
+                                                Agregar al 
+                                                <img src="{{ asset('/img/cart.png') }}" width="30px" alt="...">
+                                            </button>
+                                        </p> 
+                                    </div> 
+                                </div> 
+                            @else
+                                <div class="col-8">
+                                        <div class="card-body table-wrapper-scroll-y my-custom-scrollbar">
+                                            <div class="table-responsive">
+                                                <table class="table table-secondary table-bordered">
+                                                    <thead class="thead">
+                                                        <tr>
+                                                            <th>Etiqueta</th>
+                                                            <th>Cantidad</th>
+                                                            <th>Precio Unitario</th>
+                                                            <th>Sub Total</th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach ($productos as $producto)
                                                             <tr>
-                                                                <th>#ID Usuario</th>
-                                                                <th>#ID Orden</th>
-                                                                <th>#ID Producto</th>
-                                                                <th>Etiqueta</th>
-                                                                <th>Cantidad</th>
-                                                                <th>Precio Unitario</th>
-                                                                <th>Sub Total</th>
-                                                                <th></th>
+                                                                <td>{{ $producto->label_item }}</td>
+                                                                <td>{{ $producto->quantity }}</td>
+                                                                <td>{{ $producto->price }}</td>
+                                                                <td>{{ $producto->total }}</td>
+                                                                <td>
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="button" class="btn btn-danger btn-sm" onclick="window.location.href='http://localhost/BoutiquePHP/public/cart/delete/{{$producto->id}}'"><i class="fa fa-fw fa-trash"></i> Borrar</button>
+                                                                </td>
                                                             </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            @foreach ($productos as $producto)
-                                                                <tr>
-                                                                    <td>{{ $producto->user_id }}</td>
-                                                                    <td>{{ $producto->order_id }}</td>
-                                                                    <td>{{ $producto->product_id }}</td>
-                                                                    <td>{{ $producto->label_item }}</td>
-                                                                    <td>{{ $producto->quantity }}</td>
-                                                                    <td>{{ $producto->price }}</td>
-                                                                    <td>{{ $producto->total }}</td>
-
-                                                                    <td>
-                                                                        @csrf
-                                                                        @method('DELETE')
-                                                                        <button type="button" class="btn btn-danger btn-sm" onclick="window.location.href='http://localhost/BoutiquePHP/public/cart/delete/{{$producto->id}}'"><i class="fa fa-fw fa-trash"></i> Borrar</button>
-                                                                    </td>
-                                                                </tr>
-                                                            @endforeach
-                                                        </tbody>
-                                                    </table>
-                                                </div>
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
                                             </div>
-                                        @endif
-                                    </div>
-                                @else
-                                @endif
-                        </div>
-                        <div class="col-4 " style="background-color: whitesmoke">
-                            
-                            <div class="form-group">
-                                {{ Form::label('Comentario') }}
-                                {{ Form::text('tipo', $producto->tipo, ['class' => 'form-control' . ($errors->has('tipo') ? ' is-invalid' : ''), 'placeholder' => 'Ingrese el tipo...']) }}
-                                {!! $errors->first('tipo', '<div class="invalid-feedback">:message</div>') !!}
+                                        </div>  
+                                </div>
+                                <div class="col-4" id="divOrden">
+                                    <form method="POST" action="{{ route('cart.create') }}">
+                                        <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                                        <input type="hidden" name="total" value="{{ $producto->total }}">
+                                        <div class="form-group">
+                                            {{ Form::label('Dirección') }}
+                                            <br>
+                                            <input type="text" name="direccion"  id="direccion" class="form-control" placeholder="Ingrese la Dirección..."></input>
+                                        </div>
+                                        <br>
+                                        <div class="form-group">
+                                            {{ Form::label('Método de pago') }}
+                                            <br>
+                                            <div class='input-group mb-3' id='pago'>
+                                                <select name='metodo' class='form-select' id='metodo'>
+                                                    <option value='credito'>Credito</option>
+                                                    <option value='devito'>Devito</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                        <br>
+                                        {{ Form::label('TOTAL :') }}
+                                        <span>$ {{$producto->total}} </span>
+                                        </div>
+                                        @csrf
+                                        <button type="submit" class="btn btn-success mt-3" onclick="window.location.href='http://localhost/BoutiquePHP/public/order/create'">Comprar</button>
+                                    </form>
+                                </div>
                             </div>
-                            
-                            <div class="form-group">
-                                {{ Form::label('Dirección') }}
-                                {{ Form::text('tipo', $producto->tipo, ['class' => 'form-control' . ($errors->has('tipo') ? ' is-invalid' : ''), 'placeholder' => 'Ingrese el tipo...']) }}
-                                {!! $errors->first('tipo', '<div class="invalid-feedback">:message</div>') !!}
-                            </div>
-                            
-                            <div class="form-group">
-                                {{ Form::label('Método de pago') }}
-                                {{ Form::text('tipo', $producto->tipo, ['class' => 'form-control' . ($errors->has('tipo') ? ' is-invalid' : ''), 'placeholder' => 'Ingrese el tipo...']) }}
-                                {!! $errors->first('tipo', '<div class="invalid-feedback">:message</div>') !!}
-                            </div>
-                            <button class="btn btn-success mt-3">Comprar</button>
+                            @endif
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
-</div>
 </div>
 @endsection

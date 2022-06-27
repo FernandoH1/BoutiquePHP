@@ -4677,6 +4677,21 @@ border: solid 1px black;
   height: 10px;
 }
 
+.my-custom-scrollbar {
+  position: relative;
+  height: 400px;
+  overflow: auto;
+  }
+  
+.table-wrapper-scroll-y {
+  display: block;
+}
+
+#divOrden{
+  background-color: whitesmoke;
+  height: 380px;
+}
+
 .cards{
   border-radius: 10px;
   display: grid;

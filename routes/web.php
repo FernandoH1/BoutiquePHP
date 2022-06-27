@@ -30,6 +30,7 @@ Route::get('/home/user', [App\Http\Controllers\HomeController::class, 'index'])-
 Route::resource('producto', ProductoController::class)->middleware('auth.admin');
 
 // Route::get('/carrito', [CartController::class, 'index'])->middleware('auth')->name('carrito.cart');
+Route::post('/order/create', [CartController::class, 'crearOrden'])->middleware('auth')->name('cart.create');
 
 Route::get('/cart', [CartController::class, 'getCart'])->middleware('auth')->name('cart');
 Route::get('/cart/delete/{id}', [CartController::class, 'destroy'])->middleware('auth')->name('cart.destroy');

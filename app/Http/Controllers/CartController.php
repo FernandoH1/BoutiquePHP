@@ -97,22 +97,21 @@ class CartController extends Controller
             }
         }
     }
-    // public function crearOrden(Request $productos)
-    // {
-    //     $order = $this->getUserOrder();
-        
-
-    //     for ($i=0; $i < $productos->length; $i++) { 
-    //         DB::update('update orders_item set stock = ? where id = ?', [$totalRestante, $oitem->product_id]);
-            
-    //     }
-
-
-    // }
-
-
-
-
-
-
+    public function crearOrden(Request $request)
+    {
+         $user_id = $request->get('user_id');
+         $total = $request->get('total');
+         $direccion = $request->get('direccion');
+         $metodo = $request->get('metodo');
+    
+         $orden= new Order();
+         $orden->user_id = $user_id;
+         $orden->user_address = $direccion;
+         $orden->payment_method = $metodo;
+         $orden->total = $total;
+             
+             if ($orden->save()) {
+                 return back()->with('message', 'Order Realizada.')->with('typealert', 'success');
+             }
+    }
 }
