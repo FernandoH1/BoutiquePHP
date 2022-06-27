@@ -8,14 +8,10 @@ use App\Models\Producto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Auth;
+use DateTime;
 
 class CartController extends Controller
 {
-    // public function index()
-    // {
-    //     return view('carrito.cart');
-    // }
-
     public function __Construct()
     {
         $this->middleware('auth');
@@ -25,11 +21,8 @@ class CartController extends Controller
     {
         $order = $this->getUserOrder();
         $items = $order->getItems;
-
-        $productos = OrderItem::paginate();
-
-        // $order_id = $this->getUserOrder()->id;
-        // return count(collect($order->getItems));
+        $productos = DB::table('orders_items')->select('*')
+        ->whereNull('order_id')->paginate();
         $data = ['order' => $order, 'items' => $items];
         return view('carrito.cart', $data)
             ->with(compact('productos'))->with('i', (request()->input('page', 1) - 1) * $productos->perPage());;
@@ -99,19 +92,27 @@ class CartController extends Controller
     }
     public function crearOrden(Request $request)
     {
-         $user_id = $request->get('user_id');
-         $total = $request->get('total');
-         $direccion = $request->get('direccion');
-         $metodo = $request->get('metodo');
+        $user_id = $request->get('user_id');
+        $total = $request->get('total');
+        $direccion = $request->get('direccion');
+        $metodo = $request->get('metodo');
+        // $orderItems = OrderItem::paginate();
+        $orderItems = DB::table('orders_items')->select('*')
+             ->whereNull('order_id')->count();
     
-         $orden= new Order();
-         $orden->user_id = $user_id;
-         $orden->user_address = $direccion;
-         $orden->payment_method = $metodo;
-         $orden->total = $total;
-             
-             if ($orden->save()) {
-                 return back()->with('message', 'Order Realizada.')->with('typealert', 'success');
-             }
+        $orden= new Order();
+        $orden->user_id = $user_id;
+        $orden->user_address = $direccion;
+        $orden->payment_method = $metodo;
+        $orden->total = $total;
+        $orden->status = 100;
+        $orden->paid_at = new DateTime();
+     
+        if ($orden->save()) {
+            for ($i=0;$i<$orderItems;$i++) { 
+                DB::update('update orders_items set order_id = ? where user_id = ? and order_id is null', [$orden->id, $user_id]);
+            }
+            return back()->with('message', 'Order Realizada con Exito!!.')->with('typealert', 'success');
+        } 
     }
 }
