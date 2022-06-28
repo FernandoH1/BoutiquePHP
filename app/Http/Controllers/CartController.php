@@ -22,7 +22,8 @@ class CartController extends Controller
         $order = $this->getUserOrder();
         $items = $order->getItems;
         $productos = DB::table('orders_items')->select('*')
-            ->whereNull('order_id')->paginate();
+            ->whereNull('order_id')
+            ->where('user_id',"=", Auth::user()->id)->paginate();
         $data = ['order' => $order, 'items' => $items];
         return view('carrito.cart', $data)
             ->with(compact('productos'))->with('i', (request()->input('page', 1) - 1) * $productos->perPage());;
@@ -94,7 +95,7 @@ class CartController extends Controller
             DB::update('update productos set stock = ? where id = ?', [$totalRestante, $oitem->product_id]);
 
             if ($oitem->save()) {
-                return back()->with('message', 'Order Item Agregado.')->with('typealert', 'success');
+                return back()->with('message', 'Producto agregado al carrito con éxito!!')->with('typealert', 'success');
             }
         }
     }
@@ -106,7 +107,7 @@ class CartController extends Controller
         $metodo = $request->get('metodo');
         // $orderItems = OrderItem::paginate();
         $orderItems = DB::table('orders_items')->select('*')
-            ->whereNull('order_id')->count();
+            ->whereNull('order_id')->where('user_id',"=", Auth::user()->id)->count();
 
         $orden = new Order();
         $orden->user_id = $user_id;
@@ -120,7 +121,7 @@ class CartController extends Controller
             for ($i = 0; $i < $orderItems; $i++) {
                 DB::update('update orders_items set order_id = ? where user_id = ? and order_id is null', [$orden->id, $user_id]);
             }
-            return back()->with('message', 'Order Realizada con Exito!!.')->with('typealert', 'success');
+            return redirect()->route('cart')->with('message', 'Su compra se ha efectuado con éxito!!.')->with('typealert', 'success');
         }
     }
 }

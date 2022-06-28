@@ -27,7 +27,7 @@
                                 document.getElementById("cantidad_items").innerHTML = valorCarrito;
                             } else {
                                 valorCarrito--;
-                                alert("No hay productos en el carrito");
+                                alert("No hay Stock suficiente!!");
                             }
                         }
                                                 
@@ -42,15 +42,20 @@
                         function contador(){
                             document.getElementById("contadorC").innerHTML = valorCarrito;
                             document.getElementById("quantity").value = valorCarrito;
-                            console.log("XD "+document.getElementById("cantidad_items").value);
-                            console.log("CONTADOR: "+valorCarrito);
+                            // console.log("XD "+document.getElementById("cantidad_items").value);
+                            // console.log("CONTADOR: "+valorCarrito);
                             return valorCarrito;
                         }
 
                     </script>
 
                 <div class="card-body text-white mb-3">
-
+                @if ($message = Session::get('message'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <p>{{ $message }}</p>
+                </div>
+                @endif
                     <div class="row">
                         <div class="col-4">
                             <div class="form-group">

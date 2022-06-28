@@ -17,15 +17,15 @@ Producto
                         </span>
                     </div>
                 </div>
+                <div class="card-body">
 
-                @if ($message = Session::get('success'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        <p>{{ $message }}</p>
-                    </div>
+                @if ($message = Session::get('message'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <p>{{ $message }}</p>
+                </div>
                 @endif
 
-                <div class="card-body">
                     <div class="cart">
                         <div class="contentedor">
                             <div class="row">
@@ -51,6 +51,7 @@ Producto
                                                 <table class="table table-secondary table-bordered">
                                                     <thead class="thead">
                                                         <tr>
+                                                            {{var_dump($productos)}}
                                                             <th>Etiqueta</th>
                                                             <th>Cantidad</th>
                                                             <th>Precio Unitario</th>
@@ -63,6 +64,7 @@ Producto
                                                         @foreach ($productos as $producto)
                                                         <!-- {{ $sumaTotal += $producto->total}} -->
                                                             <tr>
+                                                                
                                                                 <td>{{ $producto->label_item }}</td>
                                                                 <td>{{ $producto->quantity }}</td>
                                                                 <td>{{ $producto->price }}</td>
