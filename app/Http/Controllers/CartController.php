@@ -22,7 +22,7 @@ class CartController extends Controller
         $order = $this->getUserOrder();
         $items = $order->getItems;
         $productos = DB::table('orders_items')->select('*')
-        ->whereNull('order_id')->paginate();
+            ->whereNull('order_id')->paginate();
         $data = ['order' => $order, 'items' => $items];
         return view('carrito.cart', $data)
             ->with(compact('productos'))->with('i', (request()->input('page', 1) - 1) * $productos->perPage());;
@@ -30,7 +30,15 @@ class CartController extends Controller
 
     public function destroy($id)
     {
-        $producto = OrderItem::find($id)->delete();
+        $orderItems =  OrderItem::find($id);
+        $productoStock = Producto::find($orderItems->product_id);
+
+
+        $cantidad = ($productoStock->stock + $orderItems->quantity);
+        DB::update('update productos set stock = ? where id = ?', [$cantidad, $orderItems->product_id]);
+
+
+        $ItemEliminado = OrderItem::find($id)->delete();
         return redirect()->route('cart')
             ->with('success', 'Order Item se elimino');
     }
@@ -67,7 +75,7 @@ class CartController extends Controller
         $datos = request()->except('_token');
         $datos['total'] = $request->quantity * $request->price;
         // print_r($datos);
-        
+
         $productoSeleccionado = Producto::find($product);
         $totalRestante = $productoSeleccionado->stock - $quantity;
 
@@ -82,9 +90,9 @@ class CartController extends Controller
             $oitem->quantity = $quantity;
             $oitem->price = $request->price;
             $oitem->total = $datos['total'] = $request->quantity * $request->price;
-            
+
             DB::update('update productos set stock = ? where id = ?', [$totalRestante, $oitem->product_id]);
-            
+
             if ($oitem->save()) {
                 return back()->with('message', 'Order Item Agregado.')->with('typealert', 'success');
             }
@@ -98,21 +106,21 @@ class CartController extends Controller
         $metodo = $request->get('metodo');
         // $orderItems = OrderItem::paginate();
         $orderItems = DB::table('orders_items')->select('*')
-             ->whereNull('order_id')->count();
-    
-        $orden= new Order();
+            ->whereNull('order_id')->count();
+
+        $orden = new Order();
         $orden->user_id = $user_id;
         $orden->user_address = $direccion;
         $orden->payment_method = $metodo;
         $orden->total = $total;
         $orden->status = 100;
         $orden->paid_at = new DateTime();
-     
+
         if ($orden->save()) {
-            for ($i=0;$i<$orderItems;$i++) { 
+            for ($i = 0; $i < $orderItems; $i++) {
                 DB::update('update orders_items set order_id = ? where user_id = ? and order_id is null', [$orden->id, $user_id]);
             }
             return back()->with('message', 'Order Realizada con Exito!!.')->with('typealert', 'success');
-        } 
+        }
     }
 }

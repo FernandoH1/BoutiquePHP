@@ -59,7 +59,9 @@ Producto
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+                                                    <?php $sumaTotal = 0?>
                                                         @foreach ($productos as $producto)
+                                                        <!-- {{ $sumaTotal += $producto->total}} -->
                                                             <tr>
                                                                 <td>{{ $producto->label_item }}</td>
                                                                 <td>{{ $producto->quantity }}</td>
@@ -80,7 +82,7 @@ Producto
                                 <div class="col-4" id="divOrden">
                                     <form method="POST" action="{{ route('cart.create') }}">
                                         <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-                                        <input type="hidden" name="total" value="{{ $producto->total }}">
+                                        <input type="hidden" name="total" value="{{ $sumaTotal }}">
                                         <div class="form-group">
                                             {{ Form::label('Dirección') }}
                                             <br>
@@ -92,15 +94,15 @@ Producto
                                             <br>
                                             <div class='input-group mb-3' id='pago'>
                                                 <select name='metodo' class='form-select' id='metodo'>
-                                                    <option value='credito'>Credito</option>
-                                                    <option value='devito'>Devito</option>
+                                                    <option value='credito'>Crédito</option>
+                                                    <option value='devito'>Débito</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                         <br>
                                         {{ Form::label('TOTAL :') }}
-                                        <span>$ {{$producto->total}} </span>
+                                        <span>$ {{$sumaTotal}} </span>
                                         </div>
                                         @csrf
                                         <button type="submit" class="btn btn-success mt-3" onclick="window.location.href='http://localhost/BoutiquePHP/public/order/create'">Comprar</button>
