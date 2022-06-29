@@ -73,6 +73,7 @@ class CartController extends Controller
         $quantity = $request->get('quantity');
         $product = $request->get('idProduct');
         $name = $request->get('ProductName');
+        $foto = $request->get('foto');
         $datos = request()->except('_token');
         $datos['total'] = $request->quantity * $request->price;
         // print_r($datos);
@@ -90,6 +91,7 @@ class CartController extends Controller
             $oitem->label_item = $name;
             $oitem->quantity = $quantity;
             $oitem->price = $request->price;
+            $oitem->foto = $foto;
             $oitem->total = $datos['total'] = $request->quantity * $request->price;
 
             DB::update('update productos set stock = ? where id = ?', [$totalRestante, $oitem->product_id]);

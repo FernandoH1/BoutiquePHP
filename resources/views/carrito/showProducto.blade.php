@@ -113,6 +113,7 @@
                                 <input type="hidden" id="quantity" name="quantity" value="">
                                 <input type="hidden" name="price" value="{{ $producto->precio }}">
                                 <input type="hidden" id="total" name="total" value="">
+                                <input type="hidden" id="foto" name="foto" value="{{ $producto->foto }}">
                                 @csrf
                                 <button type="submit" class="btn btn-primary añadirC" onclick="contador()">Añadir al <img src="{{ asset('/img/cart.png') }}" width="55px" alt="..."></button>
                             </form>

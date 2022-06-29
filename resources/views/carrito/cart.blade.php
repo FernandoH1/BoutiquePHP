@@ -51,7 +51,7 @@ Producto
                                                 <table class="table table-secondary table-bordered">
                                                     <thead class="thead">
                                                         <tr>
-                                                            {{var_dump($productos)}}
+                                                            <th>Foto</th>
                                                             <th>Etiqueta</th>
                                                             <th>Cantidad</th>
                                                             <th>Precio Unitario</th>
@@ -64,7 +64,10 @@ Producto
                                                         @foreach ($productos as $producto)
                                                         <!-- {{ $sumaTotal += $producto->total}} -->
                                                             <tr>
-                                                                
+                                                                <td>@if(isset($producto->foto))
+                                                                    <center><img class="img-thumbnail img-fluid" src="{{asset('storage').'/'.$producto->foto}}" alt="" width="100" ></center>
+                                                                    @endif
+                                                                </td>
                                                                 <td>{{ $producto->label_item }}</td>
                                                                 <td>{{ $producto->quantity }}</td>
                                                                 <td>{{ $producto->price }}</td>
